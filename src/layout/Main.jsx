@@ -1,8 +1,15 @@
 import React from "react";
 import ProfileImg from "../assets/Temp Profile.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub, faInstagram, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import {
+  faGithub,
+  faInstagram,
+  faLinkedin,
+} from "@fortawesome/free-brands-svg-icons";
 import { faMailForward, faPhone } from "@fortawesome/free-solid-svg-icons";
+import TechBox from "../components/TechBox/TechBox";
+import NavButton from "../components/NavButton";
+import Linkbubble from "../components/Linkbubble";
 
 const Main = () => {
   return (
@@ -29,18 +36,10 @@ const Main = () => {
             <div className="link-box">
               <button className="resume__btn">Resume</button>
               <div className="links">
-                <div className="link">
-                  <FontAwesomeIcon icon={faGithub} />
-                </div>
-                <div className="link">
-                  <FontAwesomeIcon icon={faInstagram} />
-                </div>
-                <div className="link">
-                  <FontAwesomeIcon icon={faLinkedin} />
-                </div>
-                <div className="link">
-                  <FontAwesomeIcon icon={faMailForward} />
-                </div>
+                <Linkbubble social={faGithub} />
+                <Linkbubble social={faInstagram} />
+                <Linkbubble social={faLinkedin} />
+                <Linkbubble social={faMailForward} />
               </div>
             </div>
           </div>
@@ -54,18 +53,29 @@ const Main = () => {
           </div>
 
           <div className="nav__btns">
-            <button className="nav__btn">About Me</button>
-            <button className="nav__btn"> My Projects</button>
-            <button className="nav__btn">Contact</button>
+            <NavButton title={"About Me"} />
+            <NavButton title={"My Projects"} />
+            <NavButton title={"Contact"} />
           </div>
         </div>
         <div className="main__content">
-          <div className="container">
-            <div className="row">
-              <div className="tech-box">
-                <div className="tech-box__title">My Tech Stack</div>
-                <div className="techs">
-                  <div className="tech">React</div>
+          <div className="main__bg">
+            <div className="container">
+              <div className="row">
+                <TechBox />
+                <div id="about-me">
+                  <h3 className="about-me__title">
+                    About <br /> Me:
+                  </h3>
+                  <p className="about-me__para">
+                    {" "}
+                    Good Mythical Morning, my is Jacksepticeye and welcom BAck
+                    to a brand new episode of HAPPY WHEELS!!! Lixian, queue the
+                    smooth jazz... WHERREE"S THE BLACKSMITH. Arin, shut up{" "}
+                    Good Mythical Morning, my is Jacksepticeye and welcom BAck
+                    to a brand new episode of HAPPY WHEELS!!! Lixian, queue the
+                    smooth jazz... WHERREE"S THE BLACKSMITH. Arin, shut up{" "}
+                  </p>
                 </div>
               </div>
             </div>
