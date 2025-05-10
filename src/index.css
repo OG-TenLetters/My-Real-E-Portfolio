@@ -1,13 +1,210 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
+
+* {
+  border: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  box-sizing: none;
+  box-sizing: border-box;
+  font-family: "Fira Code", monospace;
+}
+body {
+  background-color: black;
+  color: white;
+}
+h1 {
+  font-size: 48px;
+}
+h2 {
+  font-size: 32px;
+}
+h3 {
+  font-size: 18px;
+}
+h4 {
+  font-size: 12px;
+}
+.landing-page {
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  border-bottom:  #2c091b 8px double;
+  background-color: #1b0a12;
+  color: #6f53b1;
+  letter-spacing: 0.4em;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.main {
+  position: relative;
+  display: flex;
+  height: 100vh;
+  background-color: #69569628;
+}
+.sidebar {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color:#0e1c17ce;
+  padding: 24px 40px;
+  height: 100vh;
+  left: 0%;
+  right: 77%;
+  top: 0;
+  bottom: 0;
+  /* border-radius: 0 0 24px 0; */
+  /* border-right: 1px solid;  */
+  box-shadow: inset 0 0 24px 8px #30cc3d23;
+}
+
+.profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 24px;
+}
+.profile__styling-1 {
+  border-radius: 50%;
+  box-shadow: 0 0 40px 20px #46288d;
+  margin: 12px;
+}
+.profile__styling-2 {
+  border-radius: 50%;
+  box-shadow: 0 0 28px 8px #5738a0;
+  margin: 20px;
+}
+.profile__img--wrapper {
+  display: flex;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 100%;
+  max-width: 140px;
+}
+.profile__img {
+  width: 100%;
+  height: 100%;
+}
+.info {
+  margin-top: 12px;
+  margin-bottom: 28px;
+  background-color: #202325;
+  border-radius: 8px;
+  padding-top: 8px;
+  padding-bottom: 16px;
+  padding-left: 16px;
+  padding-right: 32px;
+  box-shadow: 0 0 12px 1px;
+}
+.name {
+  font-weight: 500;
+  margin-bottom: 4px;
+  margin-left: 4px;
+}
+.job-title {
+  color: #6da0ff;
+  margin-bottom: 4px;
+  letter-spacing: 0.04em;
+}
+.location {
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
+}
+.link-box {
+  display: flex;
+  margin-left: 4px;
+  align-items: center;
+  column-gap: 12px;
+}
+
+.resume__btn {
+  border: 1px solid;
+  border-radius: 4px;
+  font-size: 12px;
+  padding: 4px 12px;
+  color: white;
+  background-color: transparent;
+  transition: all 300ms ease;
+}
+.resume__btn:hover {
+  background-color: #bdbdbd;
+}
+.links {
+  display: flex;
+  column-gap: 12px;
+}
+.info__extra {
+  padding: 20px;
+  padding-bottom: 28px;
+  margin-bottom: 28px;
+  border: 1px dotted;
+  border-radius: 12px;
+  text-align: center;
+}
+.info__extra h3,
+.info__extra h4 {
+  margin-bottom: 12px;
+  color: #afbdbd;
+}
+
+.info__extra h4 {
+  font-size: 10px;
+}
+
+.info__extra p {
+  color: #afbdbd;
+  font-size: 10px;
+}
+
+.link {
+  padding: 4px 6px;
+  border-radius: 50%;
+  background-color: #6f8a9c1f;
+}
+.link:nth-child(1) {
+  color: grey;
+}
+.link:nth-child(2) {
+  color: rgb(252, 57, 132);
+}
+.link:nth-child(3) {
+  color: rgb(53, 174, 255);
+}
+.link:nth-child(4) {
+  color: rgb(179, 132, 255);
+}
+
+.nav__btns {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+  width: 100%;
+  max-width: 220px;
+}
+.nav__btn {
+  background-image: linear-gradient(
+    to right,
+    #00422b 20%,
+    #03271a 70%,
+    #0e1c17 100%
+  );
+  box-shadow: inset 0 0 12px 1px #ffffff2f;
+  font-size: 16px;
+  border: none;
+  padding: 8px 0;
+  border-radius: 8px;
+  color: white;
+  text-align: start;
+  padding-left: 16px;
+}
+
+.main__content {
+  position: absolute;
+  /* background-color: #dedae728; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* remove later PLEASE */
+  top: 0;
+  right: 0;
+  left: 23%;
 }
