@@ -37,10 +37,11 @@ const TechBox = () => {
           </Slider>
         </div>
       </div>
-    </div>
+      <div className="tech-box-test"></div>
     <button className="tech-box__expand--btn">
       Remove Carousel/Show All
     </button>
+    </div>
               </>
   );
 };
