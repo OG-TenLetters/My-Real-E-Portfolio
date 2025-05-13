@@ -29,10 +29,18 @@ const SideBar = () => {
             <div className="link-box">
               <button className="resume__btn">Resume</button>
               <div className="links">
-                <Linkbubble social={faGithub} />
-                <Linkbubble social={faInstagram} />
-                <Linkbubble social={faLinkedin} />
-                <Linkbubble social={faMailForward} />
+                <a className="link-color" href="https://github.com/OG-TenLetters" target="_blank">
+                  <Linkbubble social={faGithub} />
+                </a>
+                <a className="link-color" href="https://www.instagram.com/ten._.letters" target="_blank">
+                  <Linkbubble social={faInstagram} />
+                </a>
+                <a className="link-color" href="https://www.linkedin.com/in/jadon-smith-6143b9334/" target="_blank">
+                  <Linkbubble social={faLinkedin} />
+                </a>
+                <a className="link-color" href="" target="_blank">
+                  <Linkbubble social={faMailForward} />
+                </a>
               </div>
             </div>
           </div>
@@ -46,9 +54,15 @@ const SideBar = () => {
           </div>
 
           <div className="nav__btns">
-            <NavButton title={"About Me"} />
-            <NavButton title={"My Projects"} />
-            <NavButton title={"Contact"} />
+            <a href="#about-me">
+              <NavButton title={"About Me"} />
+            </a>
+            <a href="#my-projects">
+              <NavButton title={"My Projects"} />
+            </a>
+            <a href="#">
+              <NavButton title={"Contact"} />
+            </a>
           </div>
         </div>
   )
