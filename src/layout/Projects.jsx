@@ -1,12 +1,13 @@
 import { useState } from "react";
 import Project from "../components/Project";
 import ProjectDetails from "../components/ProjectDetails";
+import ProjectDetailsApi from "../components/ProjectDetailsApi";
+
 
 const Projects = () => {
-
-
   const [activeProjectIndex, setActiveProjectIndex] = useState(null);
-
+  const [projectId, setProjectId] = useState({})
+  const projectData = ProjectDetailsApi() 
   const openProject = (index) => {
     setActiveProjectIndex(index);
   };
@@ -26,16 +27,21 @@ const Projects = () => {
         <div className="projects__row">
           <div className="project-box">
             <div className="projects">
-              {Array.from({ length: 4 }).map((_, index) => (
+              {projectData.map((data, index) => (
                 <Project
+                data={data}
                   key={index}
                   index={index}
                   isActive={index === activeProjectIndex}
                   openProject={openProject}
+                  setProjectId={setProjectId}
                 />
               ))}
               {activeProjectIndex !== null && (
-                <ProjectDetails closeProject={closeProject} />
+                <ProjectDetails
+                id={projectId}
+                projectData={projectData}
+                closeProject={closeProject} />
               )}
             </div>
           </div>

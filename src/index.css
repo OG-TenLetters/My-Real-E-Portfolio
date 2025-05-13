@@ -90,7 +90,7 @@ a {
   right: 0;
   z-index: -1;
 
-  background-image: url(./assets/Screenshot\ 2025-05-10\ 142216.png);
+  background-image: url(./assets/BackgroundExample.png);
   background-repeat: repeat;
 }
 
@@ -532,17 +532,29 @@ a {
 }
 
 .projects {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  column-gap: 80px;
-  row-gap: 60px;
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px 80px;
   position: relative;
   transition: all 0.5s ease-in-out;
 }
 
+.project0 {
+  grid-area: 1/1;
+}
+.project1 {
+  grid-area: 1/2;
+}
+.project2 {
+  grid-area: 2/1;
+}
+.project3 {
+  grid-area: 2/2;
+}
+
 .project {
-  width: 40%;
+  width: 100%;
   box-shadow: 0 0 20px 6px #eeeeee;
   border-radius: 16px;
   transition: all 0.5s ease-in-out;
@@ -553,7 +565,7 @@ a {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(0.76);
   /* height: 114%; */
   width: 85%;
   aspect-ratio: 920/586;
@@ -561,6 +573,10 @@ a {
   z-index: 2;
   box-shadow: 0 0 30px 10px #cccccc;
   background-color: #241830f6;
+}
+
+.random {
+  color: #a9721d;
 }
 
 .project--active .profile__img--wrapper {
@@ -736,10 +752,12 @@ a {
   column-gap: 20px;
   align-items: center;
   margin-top: 60px;
+  flex-wrap: wrap;
 }
 .used-techs p {
   font-size: 24px;
   font-weight: 600;
+  margin-bottom: 20px;
 }
 
 .used-tech {
@@ -749,27 +767,12 @@ a {
   border-radius: 8px;
   box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.664);
   transition: all 150ms ease;
+  margin-bottom: 24px;
 }
 
 .used-tech:hover {
   transform: translateY(-8px);
   box-shadow: 0px 12px 4px 2px rgba(0, 0, 0, 0.253);
-}
-
-.used-tech:nth-child(1) {
-  background-color: rgb(145, 29, 0);
-}
-.used-tech:nth-child(2) {
-  background-color: rgb(145, 94, 0);
-}
-.used-tech:nth-child(3) {
-  background-color: rgb(145, 143, 0);
-}
-.used-tech:nth-child(4) {
-  background-color: rgb(17, 145, 0);
-}
-.used-tech:nth-child(1) {
-  background-color: rgb(2, 0, 145);
 }
 
 .footer__container {
