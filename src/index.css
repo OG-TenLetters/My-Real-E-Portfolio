@@ -552,54 +552,63 @@ a {
 .project3 {
   grid-area: 2/2;
 }
+.project4 {
+  grid-area: 3/1;
+}
+.project5 {
+  grid-area: 3/2;
+}
 
-.project {
+.project0,
+.project1,
+.project2,
+.project3,
+.project4,
+.project5 {
   width: 100%;
   box-shadow: 0 0 20px 6px #eeeeee;
   border-radius: 16px;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.2s ease-in-out;
   z-index: 1;
 }
 
+
 .project--active {
+   box-shadow: 0 0 40px 28px #0c803ca4;
+   transform: scale(1.1);
+}
+
+
+.project--active,
+.projects--inactive {
+  pointer-events: none;
+}
+
+.project__details {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(0.76);
-  /* height: 114%; */
-  width: 85%;
-  aspect-ratio: 920/586;
-  filter: blur(4px);
-  z-index: 2;
-  box-shadow: 0 0 30px 10px #cccccc;
-  background-color: #241830f6;
+  display: flex;
+  border-radius: 20px;
+  border: 4px double white;
+  padding: 20px 40px;
+  width: 100%;
+  max-width: 1000px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-50%, -50%);
+  transition: all 300ms ease;
+  background-color: #1c0b33;
+  box-shadow: inset 0 0 100px 40px rgba(0, 0, 0, 0.829);
+  opacity: 0;
+  animation: fadeIn 300ms ease forwards;
+
+
+  z-index: 20;
 }
-
-.random {
-  color: #a9721d;
-}
-
-.project--active .profile__img--wrapper {
-  transform: scale(2);
-}
-
-/* .projects > *:not(.project--active) {
-  opacity: 0.3;
-  pointer-events: none;
-  transition: opacity 0.3s ease-in-out;
-}  */
-/* Okay to make sure I understand this correctly,
-  the > makes the parent the priority
-  the * is calling all the children, the not psuedo is 
-  isolating all the children that do not have
-   the (.project--active) class.
-*/
-
 .project__wrapper {
   position: relative;
-  display: flex;
-  width: 100%;
-  height: 100%;
   border-radius: 16px;
   overflow: hidden;
 }
@@ -613,6 +622,14 @@ a {
   box-shadow: inset 0 0 100px 40px rgba(0, 0, 0, 0.829);
   transition: all 300ms ease;
 }
+
+
+.project__img--cover--inactive {
+  background-color: #022218a4;
+
+}
+
+
 
 .project__img {
   object-fit: contain;
@@ -635,14 +652,29 @@ a {
   opacity: 0;
 }
 
-.project:hover .project__img {
+.project0:hover .project__img ,
+.project1:hover .project__img ,
+.project2:hover .project__img ,
+.project3:hover .project__img ,
+.project4:hover .project__img ,
+.project5:hover .project__img {
   scale: 1.1;
   filter: blur(4px);
 }
-.project:hover .project__img--cover {
+.project0:hover .project__img--cover ,
+.project1:hover .project__img--cover ,
+.project2:hover .project__img--cover ,
+.project3:hover .project__img--cover ,
+.project4:hover .project__img--cover ,
+.project5:hover .project__img--cover {
   background-color: #1c0b33c4;
 }
-.project:hover .project__details--hover {
+.project0:hover .project__details--hover ,
+.project1:hover .project__details--hover ,
+.project2:hover .project__details--hover ,
+.project3:hover .project__details--hover ,
+.project4:hover .project__details--hover ,
+.project5:hover .project__details--hover {
   transform: translateY(0%);
   opacity: 1;
 }
@@ -654,36 +686,7 @@ a {
   text-decoration: underline;
 }
 
-.project__details--container {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  padding: 40px;
-  transform: translate(-50%, -50%) scale(0);
-  width: 100%;
-  max-width: 1000px;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.5s ease-in-out;
-  z-index: 3;
-}
 
-.project__details--container-active {
-  transform: translate(-50%, -50%) scale(1);
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.project__details {
-  background-color: #241830f6;
-  box-shadow: 0 0 8px 8px #ffffff91, inset 0 0 40px 20px rgb(19, 7, 32);
-  border-radius: 16px;
-  padding: 40px 60px;
-  padding-top: 68px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
 .project__title {
   font-size: 44px;
@@ -728,8 +731,7 @@ a {
   border: 1px solid white;
   box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.452);
   transition: all 100ms ease;
-  animation: rotate-fade 1000ms;
-  animation-delay: 800ms;
+  animation: rotate-fade 900ms;
   animation-fill-mode: forwards;
   opacity: 0;
 }
@@ -768,6 +770,7 @@ a {
   box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.664);
   transition: all 150ms ease;
   margin-bottom: 24px;
+  opacity: 0;
 }
 
 .used-tech:hover {
@@ -805,6 +808,16 @@ a {
   }
   100% {
     transform: rotate(45deg);
+    opacity: 1;
+  }
+}
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
     opacity: 1;
   }
 }

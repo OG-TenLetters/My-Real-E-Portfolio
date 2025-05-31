@@ -4,45 +4,28 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 
-const ProjectDetails = ({ projectData, id, closeProject }) => {
+const ProjectDetails = ({ data, closeProject }) => {
   useEffect(() => {
     Aos.init();
   }, [closeProject]);
 
   return (
-    <div className="project__details--container project__details--container-active">
-      <div data-aos="fade-in" data-aos-delay="350" className="project__details">
+    <div className="project__details--container ">
+      <div className="project__details">
         <FontAwesomeIcon
           onClick={() => closeProject()}
           className="project__exit"
           icon={faTimes}
         />
-        <div
-          data-aos="fade-in"
-          data-aos-delay="100"
-          data-aos-duration="100"
-          className="project__title"
-        >
-         {projectData[id].title}
-        </div>
-        <p
-          data-aos="fade-in"
-          data-aos-delay="100"
-          data-aos-duration="1000"
-          data-aos-easing="ease-in-sine"
-          className="project__para"
-        >
-          {projectData[id].para}
-        </p>
+        <div className="project__title">{null}</div>
+        <p className="project__para">{null}</p>
         <div className="project__links">
-          <a
-            target="_blank"
-            href={projectData[id].links[0].link} >
+          <a target="_blank" href={null}>
             <div className="project__link">
               <p>Github</p>
             </div>
           </a>
-          <a target="_blank" href={projectData[id].links[1].link}>
+          <a target="_blank" href={null}>
             <div className="project__link">
               <p>
                 Live <br />
@@ -53,11 +36,7 @@ const ProjectDetails = ({ projectData, id, closeProject }) => {
         </div>
         <div className="used-techs">
           <p>Tech Used:</p>
-          {
-            projectData[id].techs.map((data, index) => (
-              <div key={index} className="used-tech" style={{backgroundColor:`${data.bg_color}`}}>{data.tech}</div>
-            ))
-          }
+          <div className="used-tech">{null}</div>
         </div>
       </div>
     </div>
