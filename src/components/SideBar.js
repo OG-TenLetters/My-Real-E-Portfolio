@@ -9,7 +9,7 @@ import { faMailForward, faPhone } from "@fortawesome/free-solid-svg-icons";
 import NavButton from "../components/NavButton";
 import Linkbubble from "../components/Linkbubble";
 
-const SideBar = () => {
+const SideBar = ({toggleResumeModal}) => {
   return (
             <div className="sidebar">
           <div className="profile">
@@ -27,7 +27,7 @@ const SideBar = () => {
             <h4 className="job-title">Frontend Web Developer</h4>
             <h4 className="location">📍 Washington State, USA 🌎</h4>
             <div className="link-box">
-              <button className="resume__btn">Resume</button>
+              <button onClick={() => toggleResumeModal()} className="resume__btn">Resume</button>
               <div className="links">
                 <a className="link-color" href="https://github.com/OG-TenLetters" target="_blank">
                   <Linkbubble social={faGithub} />
