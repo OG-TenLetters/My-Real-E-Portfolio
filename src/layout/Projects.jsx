@@ -1,13 +1,33 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Project from "../components/Project";
 import ProjectDetailsApi from "../components/ProjectDetailsApi";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import ProjectDetails from "../components/ProjectDetails";
 
 const Projects = () => {
   const [isProjectOpen, setisProjectOpen] = useState(false);
   const [currentId, setCurrentId] = useState(null);
   const projectData = ProjectDetailsApi();
+  const techHoverRef = useRef();
+
+  useEffect(() => {
+    const techHover = techHoverRef.current;
+    if (techHover) {
+      const handleTechHoverEnter = () => {
+        techHover.style.transform = "translateY(4px)";
+        techHover.style.brightness = 1.2;
+        techHover.style.transition = "all 0.3s ease-in-out";
+      };
+      const handleTechHoverLeave = () => {
+        techHover.style.transform = "translateY(0)";
+        techHover.style.brightness = 1;
+        techHover.style.transition = "all 0.3s ease-in-out";
+      };
+      techHover.addEventListener("mouseenter", handleTechHoverEnter);
+      return () => {
+        techHover.removeEventListener("mouseleaver", handleTechHoverLeave);
+      };
+    }
+  }, [techHoverRef]);
 
   const toggleProject = () => {
     setisProjectOpen(!isProjectOpen);
@@ -22,48 +42,11 @@ const Projects = () => {
         <div className="projects__row">
           <div className="project-box">
             {isProjectOpen && (
-              <section id="project__details">
-                <div className="project__details">
-                  <FontAwesomeIcon
-                    onClick={() => toggleProject()}
-                    className="project__exit"
-                    icon={faTimes}
-                  />
-                  <div className="project__title">
-                    {projectData[currentId].title}
-                  </div>
-                  <p className="project__para">{projectData[currentId].para}</p>
-                  <div className="project__links">
-                    <a
-                      target="_blank"
-                      href={projectData[currentId].links[0].link}
-                    >
-                      <div className="project__link">
-                        <p>Github</p>
-                      </div>
-                    </a>
-                    <a
-                      target="_blank"
-                      href={projectData[currentId].links[1].link}
-                    >
-                      <div className="project__link">
-                        <p>
-                          Live <br />
-                          View
-                        </p>
-                      </div>
-                    </a>
-                  </div>
-                  <div className="used-techs">
-                    <p>Tech Used:</p>
-                    {projectData[currentId].techs.map((techs, index) => (
-                      <div key={techs.tech} style={{backgroundColor: techs.bg_color, animation: `fadeIn 600ms ${600 + 150 * index}ms forwards`}} className={`used-tech`}>
-                        {techs.tech}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </section>
+              <ProjectDetails
+                toggleProject={toggleProject}
+                currentId={currentId}
+                projectData={projectData}
+              />
             )}
             <div className="projects">
               {projectData.map((data, index) => (
