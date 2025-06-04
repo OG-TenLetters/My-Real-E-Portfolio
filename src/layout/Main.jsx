@@ -18,7 +18,7 @@ const Main = ({ toggleResumeModal, isResumeOpen }) => {
                   <p className="about-me__para">
                     {" "}
                     Good Mythical Morning, my is Jacksepticeye and welcom BAck
-                    to a brand new episode of HAPPY WHEELS!!! Lixian, queue the
+            to a brand new episode of HAPPY WHEELS!!! Lixian, queue the
                     smooth jazz... WHERREE"S THE BLACKSMITH. Arin, shut up Good
                     Mythical Morning, my is Jacksepticeye and welcom BAck to a
                     brand new episode of HAPPY WHEELS!!! Lixian, queue the

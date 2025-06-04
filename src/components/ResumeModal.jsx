@@ -18,6 +18,8 @@ const ResumeModal = ({toggleResumeModal}) => {
   const toggleDownloadMenu = () => {
     setDownloadMenu(!downloadMenu);
   };
+  
+
 
   return (
     <section id="resume__modal">
