@@ -21,7 +21,7 @@ const Footer = () => {
               </a>
               <div className="footer__logo">
                 <img className="footer__logo--img" src={Logo} alt="" />
-                <div className="footer__logo--hover"><FontAwesomeIcon icon={faArrowUp}/>Top</div>
+                <div className="footer__logo--hover   "><FontAwesomeIcon icon={faArrowUp}/> Top</div>
               </div>
               <a href={null}>
                 <div className="footer__link link__hover-effect ">Resume</div>
