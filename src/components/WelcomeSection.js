@@ -43,7 +43,7 @@ const WelcomeSection = () => {
   return (
     <div
       id="welcome-section"
-      style={{ height: currentHeight, fontSize: currentFontSize }}
+      // style={{ height: currentHeight, fontSize: currentFontSize }}
     >
       <h1>Welcome</h1>
     </div>

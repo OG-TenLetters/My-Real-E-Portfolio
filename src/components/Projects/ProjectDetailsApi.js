@@ -1,9 +1,9 @@
-import AnithonImg from "../assets/AnithonShowcase.png";
-import InternshipImg from "../assets/InternshipShowcase.png";
-import NetflixImg from "../assets/NetflixShowcase.png";
-import BookstoreImg from "../assets/BookstoreShowcase.png";
-import SpotifyImg from "../assets/SpotifyCloneShowcase.png";
-import SkinstricImg from "../assets/SkinstricShowcase.png";
+import AnithonImg from "../../assets/AnithonShowcase.png";
+import InternshipImg from "../../assets/InternshipShowcase.png";
+import NetflixImg from "../../assets/NetflixShowcase.png";
+import BookstoreImg from "../../assets/BookstoreShowcase.png";
+import SpotifyImg from "../../assets/SpotifyCloneShowcase.png";
+import SkinstricImg from "../../assets/SkinstricShowcase.png";
 
 const ProjectDetailsApi = () => {
   const ReactColor = "#55bed5";

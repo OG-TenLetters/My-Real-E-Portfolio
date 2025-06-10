@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import Project from "../components/Project";
-import ProjectDetailsApi from "../components/ProjectDetailsApi";
-import ProjectDetails from "../components/ProjectDetails";
+import Project from "./Project";
+import ProjectDetailsApi from "./ProjectDetailsApi";
+import ProjectDetails from "./ProjectDetails";
 
 const Projects = () => {
   const [isProjectOpen, setisProjectOpen] = useState(false);

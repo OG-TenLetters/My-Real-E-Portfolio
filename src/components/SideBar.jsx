@@ -6,8 +6,8 @@ import {
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
 import { faMailForward, faPhone } from "@fortawesome/free-solid-svg-icons";
-import NavButton from "../components/NavButton";
-import Linkbubble from "../components/Linkbubble";
+import NavButton from "./NavButton";
+import Linkbubble from "./Linkbubble";
 
 const SideBar = ({toggleResumeModal}) => {
   return (
@@ -27,7 +27,7 @@ const SideBar = ({toggleResumeModal}) => {
             <h4 className="job-title">Frontend Web Developer</h4>
             <h4 className="location">📍 Washington State, USA 🌎</h4>
             <div className="link-box">
-              <button onClick={() => toggleResumeModal()} className="resume__btn">Resume</button>
+              <a href="#resume__modal"><button onClick={() => toggleResumeModal()} className="resume__btn">Resume</button></a>
               <div className="links">
                 <a className="link-color" href="https://github.com/OG-TenLetters" target="_blank">
                   <Linkbubble social={faGithub} />

@@ -3,8 +3,8 @@ import Footer from "./components/Footer";
 import SideBar from "./components/SideBar";
 import WelcomeSection from "./components/WelcomeSection";
 import Main from "./layout/Main";
-import Projects from "./layout/Projects";
 import BackgroundImg from "./assets/BackgroundExample.png";
+import Projects from "./components/Projects/Projects";
 
 function App() {
   const [isResumeOpen, setIsResumeOpen] = useState(false)

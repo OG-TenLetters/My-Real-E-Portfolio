@@ -101,13 +101,16 @@ a {
   position: relative;
 }
 
-
 #resume__modal {
+  position: relative;
+}
+
+.resume__modal {
   position: absolute;
   top: 40px;
   left: 50%;
   transform: translateX(-50%);
-  width: 100%;
+  width: 80%;
   max-width: 1000px;
   border-radius: 20px;
   z-index: 20;
@@ -139,12 +142,16 @@ a {
   padding: 60px 0;
 }
 .resume__row {
-  padding: 0 80px;
+  padding: 0 60px;
 }
 
 .resume__top {
   display: flex;
   justify-content: space-between;
+  margin-top: 32px;
+}
+.resume__top h2 {
+ font-size: 32px;
 }
 
 .resume__download {
@@ -153,10 +160,10 @@ a {
   border-radius: 12px;
   font-size: 20px;
   width: 100%;
-  max-width: 240px;
+  max-width: 220px;
   letter-spacing: 0.04em;
-  right: 40px;
-  top: 40px;
+  right: 20px;
+  top: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -165,6 +172,9 @@ a {
   color: #cfcfcf;
   z-index: 5;
   transition: all 300ms;
+}
+.resume__download--text {
+  font-size: 16px;
 }
 
 .resume__download:hover {
@@ -186,8 +196,8 @@ a {
   width: 100%;
   border-radius: 0 0 12px 12px;
   padding-top: 16px;
-  top: 76px;
-  right: 40px;
+  top: 48px;
+  right: 20px;
   z-index: 4;
   overflow: hidden;
 }
@@ -211,9 +221,8 @@ a {
   background-color: #00422b;
 }
 
-.resume__download h4 {
-  font-size: 20px;
-}
+
+
 
 .resume__img--wrapper {
   width: 100%;
@@ -733,12 +742,7 @@ a {
   grid-area: 3/2;
 }
 
-.project0,
-.project1,
-.project2,
-.project3,
-.project4,
-.project5 {
+.project {
   width: 100%;
   box-shadow: 0 0 20px 6px #eeeeee;
   border-radius: 16px;
@@ -754,6 +758,7 @@ a {
 .project--active,
 .projects--inactive {
   pointer-events: none;
+  opacity: 50%;
 }
 
 .project__details {
@@ -813,35 +818,24 @@ a {
   bottom: 0;
   display: flex;
   justify-content: center;
+  text-align: center;
   align-items: center;
   transform: translateY(100%);
   transition: all 300ms ease;
   opacity: 0;
 }
 
-.project0:hover .project__img,
-.project1:hover .project__img,
-.project2:hover .project__img,
-.project3:hover .project__img,
-.project4:hover .project__img,
-.project5:hover .project__img {
+.project:hover .project__img
+ {
   scale: 1.1;
   filter: blur(4px);
 }
-.project0:hover .project__img--cover,
-.project1:hover .project__img--cover,
-.project2:hover .project__img--cover,
-.project3:hover .project__img--cover,
-.project4:hover .project__img--cover,
-.project5:hover .project__img--cover {
+
+.project:hover .project__img--cover {
   background-color: #1c0b33c4;
 }
-.project0:hover .project__details--hover,
-.project1:hover .project__details--hover,
-.project2:hover .project__details--hover,
-.project3:hover .project__details--hover,
-.project4:hover .project__details--hover,
-.project5:hover .project__details--hover {
+
+.project:hover .project__details--hover {
   transform: translateY(0%);
   opacity: 1;
 }
@@ -912,6 +906,16 @@ a {
 .project__link:hover:active {
   transform: rotate(45deg) scale(1) translate(4px, 4px);
   box-shadow: none;
+}
+
+.project__repo--desktop {
+  display: block;
+}
+.project__repo--mobile {
+  display: none;
+  font-size: 24px;
+  transform: rotate(-45deg);
+
 }
 
 .used-techs {
@@ -1077,6 +1081,22 @@ a {
     transform: translate(-50%, -50%);
   }
 }
+@keyframes topCenterZoomIn {
+  0% {
+    top: 0%;
+    left: 50%;
+    scale: 40%;
+    opacity: 0;
+    transform: translate(-50%, 0%);
+  }
+  100% {
+    top: 0;
+    left: 50%;
+    opacity: 1;
+    scale: 100%;
+    transform: translate(-50%, -10%);
+  }
+}
 
 @keyframes fadeLeft {
   0% {
@@ -1109,8 +1129,18 @@ a {
 
 
 @media (max-width: 1024px) {
-  .about-me__header {
+
+
+  .nav__btn {
+    font-size: 16px;
+  }
+
+  .about-me__header,
+  .projects__header {
     font-size: 32px;
+  }
+  .project__title {
+    font-size: 36px;
   }
   .about-me__para {
     font-size: 20px;
@@ -1124,4 +1154,175 @@ a {
   .projects {
     gap: 40px 48px;
   }
+  .project__details--hover a h3 {
+    font-size: 16px;
+  }
+  .project__details {
+    padding: 12px 8px;
+  }
+  .project__para {
+    font-size: 20px;
+  }
+  .used-techs p {
+    font-size: 20px;
+  }
+  .project__repo--desktop {
+    display: none;
+  }
+  .project__repo--mobile {
+    display: block;
+  }
+  .project__link {
+    width: 60px;
+    height: 60px;
+  }
+
+  .footer__row {
+    padding: 0 80px;
+  }
+  .footer__links {
+    font-size: 16px;
+  }
 }
+
+@media (max-width: 768px) {  
+
+
+  .sidebar {
+    display: none;
+  }
+
+  .main-content {
+    width: 100%;
+  }
+
+  .resume__download {
+    font-size: 12px;
+  }
+
+  .resume__top h2 {
+    font-size: 24px;
+ 
+  }
+
+  .footer {
+    background-color: #433e8884;
+  }
+  .footer__logo {
+    max-width: 60px;
+    margin: 0 8px
+  }
+  .footer__row {
+    padding: 0 32px;
+  }
+  .footer__links {
+ padding: 24px 8px;
+    box-shadow: inset 0 0 12px 8px #ffffff42, 0 0 24px 8px #80808048;
+    background-color: #2c091b9c;
+    gap: 12px;
+    
+  }
+  .footer__container {
+    padding: 48px 0;
+  }
+}
+
+@media (max-width: 540px) {
+
+  .main__container {
+    padding: 40px 0;
+  }
+  
+  .about-me__container {
+    padding: 20px 0;
+  }
+  .about-me__para {
+    padding: 20px;
+    font-size: 16px;
+  }
+  .projects {
+    display: flex; 
+    flex-direction: column;
+  }
+
+  .projects__container {
+    padding: 20px 0;
+  }
+  .about-me__header,
+  .projects__header {
+    font-size: 28px;
+  }
+  .project__details {
+    animation: topCenterZoomIn 300ms ease forwards;
+  }
+  .project__title {
+    margin-top: 12px;
+    font-size: 24px;
+  }
+  .project__para {
+    font-size: 16px;
+  }
+}
+@media (max-width: 480px) {
+  .main__row {
+    padding: 0 20px;
+  }
+    .about-me__header,
+  .projects__header {
+    font-size: 20px;
+  }
+
+  .used-techs {
+    margin-top: 24px; 
+    gap: 12px;
+  }
+  .used-techs p {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+  .used-tech {
+    font-size: 10px;
+    padding: 4px 8px;
+    margin-bottom: 12px;
+  }
+  .about-me {
+    padding: 12px;
+  }
+  .about-me__para {
+    font-size: 12px;
+  }
+  .project__exit {
+    top: 12px;
+    right: 12px;
+    padding: 4px;
+  }
+  .project__title {
+    margin-top: 32px;
+  }
+  .project__para {
+    font-size: 14px;
+    margin: 24px 0;
+    margin-bottom: 28px;
+    width: 90%;
+
+  }
+
+  .project__link {
+    width: 40px;
+    height: 40px;
+  }
+  .footer__logo {
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 30%;
+  }
+  .footer__links {
+    font-size: 12px;
+    padding: 12px 0;
+  }
+  .footer__container {
+    padding: 28px 0;
+  }
+}
+

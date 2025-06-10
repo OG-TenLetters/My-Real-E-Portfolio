@@ -16,7 +16,7 @@ const Project = ({
   const hideProjects = isProjectOpen && index !== currentId;
   return (
     <div
-      className={`project${`${index}`} ${showDetails && "project--active"} ${hideProjects && "projects--inactive"}`}
+      className={`project project${`${index}`} ${showDetails && "project--active"} ${hideProjects && "projects--inactive"}`}
     >
       <figure className="project__wrapper" >
         <img
