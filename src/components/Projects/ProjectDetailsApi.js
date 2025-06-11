@@ -131,7 +131,7 @@ const ProjectDetailsApi = () => {
       ],
     },
     {
-      title: "E-commerce Bookstore",
+      title: "E-Bookstore",
       image: BookstoreImg,
       id: 4,
       para: `

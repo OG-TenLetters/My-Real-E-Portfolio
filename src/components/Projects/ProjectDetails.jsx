@@ -6,7 +6,8 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
-const ProjectDetails = ({ projectData, currentId, toggleProject }) => {
+const ProjectDetails = ({ projectData, currentId, toggleProject, componentRef,
+ }) => {
   const zoomCenter0 = {
     hidden: {
       y: "0",
@@ -29,7 +30,7 @@ const ProjectDetails = ({ projectData, currentId, toggleProject }) => {
   };
 
   return (
-    <section id="project__details">
+    <section ref={componentRef} id="project__details">
       <div className="project__details">
         <FontAwesomeIcon
           onClick={() => toggleProject()}

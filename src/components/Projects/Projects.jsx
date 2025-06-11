@@ -2,12 +2,15 @@ import { useEffect, useRef, useState } from "react";
 import Project from "./Project";
 import ProjectDetailsApi from "./ProjectDetailsApi";
 import ProjectDetails from "./ProjectDetails";
+import useScrollToCenter from "../../hooks/useScrollToCenter";
 
 const Projects = () => {
   const [isProjectOpen, setisProjectOpen] = useState(false);
   const [currentId, setCurrentId] = useState(null);
   const projectData = ProjectDetailsApi();
   const techHoverRef = useRef();
+
+  const componentRef = useScrollToCenter(isProjectOpen);
 
   useEffect(() => {
     const techHover = techHoverRef.current;
@@ -43,6 +46,7 @@ const Projects = () => {
           <div className="project-box">
             {isProjectOpen && (
               <ProjectDetails
+              componentRef={componentRef}
                 toggleProject={toggleProject}
                 currentId={currentId}
                 projectData={projectData}

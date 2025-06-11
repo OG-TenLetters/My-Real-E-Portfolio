@@ -70,7 +70,7 @@ a {
   transition: height 0.1s ease-out, font-size 0.1s ease-out; /* Smooth transition */
   z-index: 10; /* Ensure it stays above other content */
   border-bottom: #2c091b 8px double;
-  margin-bottom: 300px;
+  /* margin-bottom: 300px; */
 
   box-shadow: inset 0 0 40px 16px #100522;
 }
@@ -99,6 +99,20 @@ a {
   padding-top: 40px;
   flex-direction: column;
   position: relative;
+}
+
+.main__nav {
+  position: sticky;
+  background-color: rgba(0, 0, 0, 0.438);
+  box-shadow: inset 0 0 32px 24px #ffffff48,
+  0 0 24px 8px #ffffff48;
+  top: 0;
+  left: 0;
+  display: none;
+  font-size: 24px;
+  padding: 32px;
+  width: 100%;
+  z-index: 40;
 }
 
 #resume__modal {
@@ -191,7 +205,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 240px;
+  max-width: 220px;
   background-color: #01301fce;
   width: 100%;
   border-radius: 0 0 12px 12px;
@@ -262,6 +276,17 @@ a {
   top: 0;
   border-radius: 0 8px 8px 0;
   box-shadow: inset 0 0 24px 8px #30cc3d23;
+  z-index: 50;
+}
+
+.sidebar__exit {
+  position: absolute;
+  top: 28px;
+  left: 32px;
+  color: white;
+  font-size: 28px;
+  display: none;
+  transform: rotate(90deg);
 }
 
 .profile {
@@ -440,7 +465,7 @@ a {
   margin: 0 auto;
   position: relative;
   z-index: 10;
-  max-width: 1100px;
+  max-width: 1000px;
   width: 100%;
   border-radius: 12px;
   /* box-sizing: border-box; */
@@ -1187,9 +1212,16 @@ a {
 
 @media (max-width: 768px) {  
 
-
   .sidebar {
-    display: none;
+    position: fixed;
+    width: 50%;
+  }
+
+  .sidebar__exit {
+    display: block;
+  }
+  .main__nav {
+    display: block;
   }
 
   .main-content {
@@ -1229,6 +1261,22 @@ a {
 
 @media (max-width: 540px) {
 
+  .sidebar {
+    width: 60%;
+  }
+  .resume__download {
+    max-width: 160px;
+  }
+  .resume__download--text {
+    font-size: 12px;
+  }
+  .resume__download--options {
+    max-width: 160px;
+  }
+  .resume__download--option {
+    font-size: 16px;
+  }
+
   .main__container {
     padding: 40px 0;
   }
@@ -1264,12 +1312,11 @@ a {
   }
 }
 @media (max-width: 480px) {
+    .sidebar {
+    width: 65%;
+  }
   .main__row {
     padding: 0 20px;
-  }
-    .about-me__header,
-  .projects__header {
-    font-size: 20px;
   }
 
   .used-techs {
@@ -1291,10 +1338,20 @@ a {
   .about-me__para {
     font-size: 12px;
   }
+  .project-box {
+    padding: 20px 0;
+  }
   .project__exit {
     top: 12px;
     right: 12px;
     padding: 4px;
+  }
+  .resume__top h2 {
+    font-size: 16px;
+  }
+  .resume__modal--exit {
+    top: 20px;
+    left: 12px;
   }
   .project__title {
     margin-top: 32px;
@@ -1324,5 +1381,111 @@ a {
   .footer__container {
     padding: 28px 0;
   }
+
+  .info__extra p {
+    font-size: 8px;
+  }
 }
 
+@media (max-width: 360px) {
+  .profile {
+    padding-bottom: 0;
+    scale: 80%;
+  }
+      .sidebar {
+    width: 80%;
+    padding: 20px 40px;
+  }
+  .info {
+    padding: 12px;
+
+  }
+  .info__extra {
+    padding: 4px 20px;
+  }
+  .name {
+    font-size: 16px;
+  }
+}
+
+@media screen and (orientation: landscape) and (max-width: 991px) {
+  .sidebar {
+    flex-direction: row;
+    width: 100%;
+    padding: 12px 40px;
+    flex-wrap: wrap;
+  }
+  .profile {
+    width: 100%;
+    padding: 0;
+  
+  }
+  .profile__img--wrapper {
+    height: 80px;
+  }
+  .profile__styling-1 {
+    margin: 4px;
+  }
+  .profile__styling-2 {
+    margin: 8px;
+  }
+  .info {
+    width: 100%;
+    margin: 0;
+    flex-wrap: wrap;
+    position: relative;
+
+  } 
+
+  .name {
+    margin-left: 8px;
+    font-size: 12px;
+  }
+   .job-title,
+   .location {
+    font-size: 8px;
+  }
+  
+  .job-title {
+    margin-left: 8px;
+  }
+
+
+
+  .resume__btn {
+    font-size: 8px;
+    display: flex;
+    justify-content: center;
+ 
+  }
+
+  .info__extra {
+    display: none;
+  }
+  .links {
+    position: absolute;
+    width: 20px;
+    top: 20px;
+    height: 60%;
+    right: 52px;
+    gap: 8px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    font-size: 12px;
+  }
+
+  .nav__btns {
+    flex-direction: row-reverse;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .nav__btn {
+    font-size: 12px;
+    width: 100%;
+    padding: 8px 20px;
+    border-radius: 6px;
+  }
+  
+}

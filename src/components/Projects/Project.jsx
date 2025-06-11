@@ -26,10 +26,8 @@ const Project = ({
         />
         <>
           <div className={`${isProjectOpen && index !== currentId ? "project__img--cover--inactive" : ""} project__img--cover`}></div>
-          <div className="project__details--hover">
-            <a href="#my-projects">
+          <div className="project__details--hover">    
               <h3 onClick={() => captureId()}>Click For Details</h3>
-            </a>
           </div>
         </>
       </figure>
