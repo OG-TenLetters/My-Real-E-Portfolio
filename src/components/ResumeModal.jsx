@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import resumeJpg from "../assets/Jadon Smith - Resume.jpg";
+import resumeJpg from "../assets/Jadon Smith - Resume.png";
+
 import {
   faCaretUp,
   faDownload,
@@ -14,11 +15,13 @@ import { useState } from "react";
 
 const ResumeModal = ({toggleResumeModal}) => {
   const [downloadMenu, setDownloadMenu] = useState(false);
-
+  const [isImgLoaded, setIsImgLoaded] = useState(false);
   const toggleDownloadMenu = () => {
     setDownloadMenu(!downloadMenu);
   };
-  
+  const handleImageLoad = () => {
+    setIsImgLoaded(true)
+  }
 
 
   return (
@@ -43,14 +46,16 @@ const ResumeModal = ({toggleResumeModal}) => {
               {downloadMenu && (
                 <div className="resume__download--options">
                   <div className="resume__download--wrapper" onClick={() => toggleDownloadMenu()}>
-                      <a className="resume__download--option" href={null}>
+                      <a className="resume__download--option" href={"/Jadon Smith - Resume.pdf"}
+                      download={"Jadon Smith - Resume.pdf"}>
                         <FontAwesomeIcon icon={faFilePdf} />
                         .pdf
                         <FontAwesomeIcon icon={faDownload} />
                       </a>
                   </div>
                   <div className="resume__download--wrapper" onClick={() => toggleDownloadMenu()}>
-                      <a className="resume__download--option" href={null}>
+                      <a className="resume__download--option" href={"/Jadon Smith - Resume.docx"}
+                      download={"Jadon Smith - Resume.docx"}>
                         <FontAwesomeIcon icon={faFileWord} />
                         .docx
                         <FontAwesomeIcon icon={faDownload} />
@@ -61,7 +66,11 @@ const ResumeModal = ({toggleResumeModal}) => {
               <div className="resume__img--wrapper">
                 <div className="resume__img--cover"></div>
                 <div className="resume__img--skeleton"></div>
-                {/* <img className="resume__img" src={resumeJpg} alt="" /> */}
+
+                <img 
+                onLoad={() => handleImageLoad()}
+                style={{ display: `${isImgLoaded ? "flex" : "none"}`}}
+                className="resume__img" src={resumeJpg} alt="" />
               </div>
               {/* <div className="resume__zoom">
                 <div className="resume__zoom--minus">
