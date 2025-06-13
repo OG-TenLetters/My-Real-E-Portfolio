@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-const WelcomeSection = () => {
+const WelcomeSection = ({
+  isContactOpen, isContactSubmitted }) => {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
@@ -45,11 +46,23 @@ const WelcomeSection = () => {
       id="welcome-section"
       // style={{ height: currentHeight, fontSize: currentFontSize }}
     >
-      <h1>Welcome</h1>
-
-            <a href="#main-content" class="scroll">
-        <div class="scroll__icon click"></div>
-      </a>
+      <div class={`welcome__text ${isContactOpen && "contact-modal--open"}`}>
+        <h1
+          style={{
+        
+            fontSize: `${isContactSubmitted && "20px"}`,
+            width: `${isContactSubmitted && "80%"}`,
+            textAlign: `${isContactSubmitted && "center"}`,
+          }}
+        >{`${
+          isContactSubmitted
+            ? "Thank you, Sage! I'm looking forward to speaking with you soon."
+            : "Welcome"
+        }`}</h1>
+        <a href="#main-content" class={`scroll ${isContactSubmitted && "hidden"}`}>
+          <div class="scroll__icon click"></div>
+        </a>
+      </div>
     </div>
   );
 };

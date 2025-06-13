@@ -4,7 +4,7 @@ import ProjectDetailsApi from "./ProjectDetailsApi";
 import ProjectDetails from "./ProjectDetails";
 import useScrollToCenter from "../../hooks/useScrollToCenter";
 
-const Projects = () => {
+const Projects = ({ isContactOpen }) => {
   const [isProjectOpen, setisProjectOpen] = useState(false);
   const [currentId, setCurrentId] = useState(null);
   const projectData = ProjectDetailsApi();
@@ -37,33 +37,35 @@ const Projects = () => {
   };
   return (
     <section id="my-projects">
-      <h2 className={`projects__header`}>
-        My <br />
-        Projects
-      </h2>
-      <div className="projects__container">
-        <div className="projects__row">
-          <div className="project-box">
-            {isProjectOpen && (
-              <ProjectDetails
-              componentRef={componentRef}
-                toggleProject={toggleProject}
-                currentId={currentId}
-                projectData={projectData}
-              />
-            )}
-            <div className="projects">
-              {projectData.map((data, index) => (
-                <Project
-                  key={data.id}
-                  index={index}
-                  data={data}
-                  setCurrentId={setCurrentId}
-                  currentId={currentId}
-                  isProjectOpen={isProjectOpen}
+      <div className={`my-projects ${isContactOpen && "contact-modal--open"}`}>
+        <h2 className={`projects__header`}>
+          My <br />
+          Projects
+        </h2>
+        <div className="projects__container">
+          <div className="projects__row">
+            <div className="project-box">
+              {isProjectOpen && (
+                <ProjectDetails
+                  componentRef={componentRef}
                   toggleProject={toggleProject}
+                  currentId={currentId}
+                  projectData={projectData}
                 />
-              ))}
+              )}
+              <div className="projects">
+                {projectData.map((data, index) => (
+                  <Project
+                    key={data.id}
+                    index={index}
+                    data={data}
+                    setCurrentId={setCurrentId}
+                    currentId={currentId}
+                    isProjectOpen={isProjectOpen}
+                    toggleProject={toggleProject}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>

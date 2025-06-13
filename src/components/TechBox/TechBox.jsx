@@ -3,7 +3,7 @@ import Tech from "./Tech";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-const TechBox = () => {
+const TechBox = ({isContactOpen}) => {
   const tech = TechBoxApi();
   const settings = {
     dots: false,
@@ -22,7 +22,7 @@ const TechBox = () => {
 
   return (
     <>
-      <div className="tech-box--wrapper">
+      <div className={`tech-box--wrapper ${isContactOpen && "contact-modal--open"}`}>
         <div className="tech-box__title">My Tech Stack</div>
         <div className="tech-box">
           <div className="techs">
