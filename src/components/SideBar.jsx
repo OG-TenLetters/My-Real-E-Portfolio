@@ -5,32 +5,43 @@ import {
   faInstagram,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
-import { faBars, faMailForward, faPhone, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faEnvelope, faMailForward, faPhone, faTimes } from "@fortawesome/free-solid-svg-icons";
 import NavButton from "./NavButton";
 import Linkbubble from "./Linkbubble";
+import { useState } from "react";
 
 const SideBar = ({toggleResumeModal,
   toggleSidebar,
   closeSidebar,
 }) => {
 
+  const [imgLoaded, setImgLoaded] = useState(false)
   const handleResume = () => {
     closeSidebar()
   toggleResumeModal()
+  }
+  const handleImageLoad = () => {
+    setImgLoaded(true);
   }
 
   return (
             <div className="sidebar">
               <div
               onClick={() => toggleSidebar()}
-              className="sidebar__exit">
+              className="sidebar__exit clickable">
                 <FontAwesomeIcon icon={faBars} />
               </div>
           <div className="profile">
             <div className="profile__styling-1">
               <div className="profile__styling-2">
                 <figure className="profile__img--wrapper">
-                  <img src={ProfileImg} alt="" className="profile__img" />
+          
+                  <div className="profile__img--skeleton"></div>
+                  
+                  <img src={ProfileImg} alt="" className="profile__img"
+                  onLoad={() => handleImageLoad()}
+                    style={{ display: imgLoaded ? "flex" : "none"}}
+                   />
                 </figure>
               </div>
             </div>
@@ -53,7 +64,7 @@ const SideBar = ({toggleResumeModal,
                   <Linkbubble social={faLinkedin} />
                 </a>
                 <a className="link-color" href="" target="_blank">
-                  <Linkbubble social={faMailForward} />
+                  <Linkbubble social={faEnvelope} />
                 </a>
               </div>
             </div>
@@ -68,7 +79,9 @@ const SideBar = ({toggleResumeModal,
           </div>
 
           <div className="nav__btns">
-            <a href="#about-me">
+            <a
+           
+            href="#about-me">
               <NavButton title={"About Me"} />
             </a>
             <a href="#my-projects">

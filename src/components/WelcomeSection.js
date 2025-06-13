@@ -46,6 +46,10 @@ const WelcomeSection = () => {
       // style={{ height: currentHeight, fontSize: currentFontSize }}
     >
       <h1>Welcome</h1>
+
+            <a href="#main-content" class="scroll">
+        <div class="scroll__icon click"></div>
+      </a>
     </div>
   );
 };

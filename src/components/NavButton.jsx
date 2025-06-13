@@ -2,7 +2,8 @@ const NavButton = ({ title }) => {
   return (
     <div className="btn__glimmer">
       <div></div>
-      <button className="nav__btn">{title}</button>
+      <button className="nav__btn
+      clickable">{title}</button>
     </div>
   );
 };

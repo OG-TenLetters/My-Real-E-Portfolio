@@ -3,12 +3,13 @@
 * {
   border: 0;
   margin: 0;
-  box-sizing: none;
   box-sizing: border-box;
   font-family: "Fira Code", monospace;
 }
 body {
   color: white;
+  background-color: #202122;
+  overflow-x: hidden;
 }
 h1 {
   font-size: 48px;
@@ -28,14 +29,12 @@ button {
 
 html {
   scroll-behavior: smooth;
-  
 }
 
 a {
   color: inherit;
   text-decoration: none;
 }
-
 
 .link__hover-effect {
   position: relative;
@@ -55,42 +54,102 @@ a {
   width: 100%;
 }
 
+.scroll {
+  position: absolute;
+  bottom: 29%;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 300ms ease;
+}
+
+.scroll__icon {
+  width: 32px;
+  height: 52px;
+  border: 3px solid #6f53b1;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 4s 1800ms backwards;
+
+}
+
+.scroll__icon::after {
+  background-color: #d1c5ff;
+  content: "";
+  width: 8px;
+  height: 12px;
+  border-radius: 4px;
+  animation: scroll 1000ms infinite alternate-reverse;
+}
+
+.scroll:hover {
+  transform: translateX(-50%) scale(1.2);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateY(3px);
+  }
+  100% {
+    transform: translateY(-3px);
+  }
+}
+
+
+@keyframes loadingPulse {
+  0% {
+    opacity: 0.6; 
+  }
+  50% {
+    opacity: 1;  
+  }
+  100% {
+    opacity: 0.6;
+}
+}
+
+
+
+
+
 #welcome-section {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative; /* Stay in place while scrolling */
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
   color: #6f53b1;
   background-color: #252153d7;
-  font-size: 12rem;
-  height: 100vh; /* Initial full viewport height */
-  transition: height 0.1s ease-out, font-size 0.1s ease-out; /* Smooth transition */
-  z-index: 10; /* Ensure it stays above other content */
+  height: 100vh;
+  transition: height 0.1s ease-out, font-size 0.1s ease-out; 
+  z-index: 10; 
   border-bottom: #2c091b 8px double;
-  /* margin-bottom: 300px; */
+
 
   box-shadow: inset 0 0 40px 16px #100522;
+}
+
+#welcome-section h1 {
+  opacity: 0;
+  font-size: 4rem;
+  letter-spacing: 0.2rem;
+  animation: fadeIn 1s 600ms ease forwards;
 }
 
 .clickable {
   cursor: pointer;
 }
- 
 
-
-.App-container {
-  overflow: hidden;
-}
 .content-wrapper {
   position: relative;
   display: flex;
   width: 100%;
 }
 
-.main-content {
+#main-content {
   flex: 1;
 }
 
@@ -103,9 +162,16 @@ a {
 
 .main__nav {
   position: sticky;
-  background-color: rgba(0, 0, 0, 0.438);
+  /* background-color: #00000070;
   box-shadow: inset 0 0 32px 24px #ffffff48,
-  0 0 24px 8px #ffffff48;
+  0 0 24px 8px #ffffff48; */
+  background-image: linear-gradient(
+    to bottom,
+    #202122ef 0%,
+     #2021226b 50%,
+     #20212249 70%,
+     transparent 100% 
+     );
   top: 0;
   left: 0;
   display: none;
@@ -113,6 +179,21 @@ a {
   padding: 32px;
   width: 100%;
   z-index: 40;
+}
+
+.main__nav--btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main__nav--btn .fa-bars {
+  transition: all 300ms ease;
+}
+
+.main__nav--btn:hover .fa-bars {
+  transform: scale(1.2);
+  cursor: pointer;
 }
 
 #resume__modal {
@@ -165,7 +246,7 @@ a {
   margin-top: 32px;
 }
 .resume__top h2 {
- font-size: 32px;
+  font-size: 32px;
 }
 
 .resume__download {
@@ -235,15 +316,15 @@ a {
   background-color: #00422b;
 }
 
-
-
-
 .resume__img--wrapper {
   width: 100%;
   max-width: 600px;
   position: relative;
   box-shadow: 0 0 40px 12px #185320;
   margin: 40px 0;
+    padding-bottom: calc(621 / 440 * 100%);
+  height: 0; 
+  overflow: hidden; 
 }
 .resume__img {
   width: 100%;
@@ -257,6 +338,23 @@ a {
   left: 0;
   right: 0;
   bottom: 0;
+}
+
+.resume__img--skeleton {
+  animation: loadingPulse 1.8s infinite ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+
+  background-color: #e0e0e0; 
+  border-radius: 4px; 
+
+  width: 100%;
+  margin-bottom: 8px;
+  aspect-ratio: 440/621; 
 }
 
 .resume__zoom {
@@ -290,6 +388,7 @@ a {
 }
 
 .profile {
+  width: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -299,22 +398,48 @@ a {
   border-radius: 50%;
   box-shadow: 0 0 40px 20px #46288d;
   margin: 12px;
+  width: 100%;
+  aspect-ratio: 1/1;
 }
 .profile__styling-2 {
+
   border-radius: 50%;
   box-shadow: 0 0 28px 8px #5738a0;
   margin: 20px;
+  aspect-ratio: 1/1;
 }
 .profile__img--wrapper {
-  display: flex;
+
   border-radius: 50%;
   overflow: hidden;
   width: 100%;
-  max-width: 200px;
+
+  position: relative; 
+
+  padding-bottom: 100%; 
+  height: 0;           
 }
+
+.profile__img--skeleton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%; 
+  background-color: #18083d;
+  animation: loadingPulse 1.8s infinite ease-in-out;
+}
+
 .profile__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
-  height: 100%;
+  animation: fadeIn 50ms ease backwards;
+
 }
 .info {
   margin-top: 12px;
@@ -557,6 +682,7 @@ a {
 }
 
 .tech {
+  aspect-ratio: 1/1;
   position: relative;
   padding: 12px;
   margin: 12px;
@@ -713,8 +839,8 @@ a {
   margin: 0 auto;
   margin-bottom: 72px;
   text-align: center;
-  transition: all 300ms ease; 
-   opacity: 100%;
+  transition: all 300ms ease;
+  opacity: 100%;
 }
 
 .project__header--dimmmed {
@@ -850,8 +976,7 @@ a {
   opacity: 0;
 }
 
-.project:hover .project__img
- {
+.project:hover .project__img {
   scale: 1.1;
   filter: blur(4px);
 }
@@ -940,7 +1065,6 @@ a {
   display: none;
   font-size: 24px;
   transform: rotate(-45deg);
-
 }
 
 .used-techs {
@@ -977,8 +1101,41 @@ a {
 #footer {
   background-color: black;
   position: relative;
-  overflow: hidden;
+
   margin-top: 160px;
+}
+
+.footer__to-top {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  width: 0;
+  height: 0;
+
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  border-bottom: 24px solid #808080;
+  border-radius: 24px;
+  transition: all 300ms ease;
+  transform: translate(-50%);
+  cursor: pointer;
+  display: none;
+  
+}
+
+.triangle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 29%);
+  font-size: 20px;
+  font-weight: 900;
+  color: rgb(201, 201, 201);
+}
+
+.footer__to-top:hover {
+  transform: translate(-50%) scale(1.3);
+  filter: brightness(1.3);
 }
 
 .footer__container {
@@ -1030,7 +1187,6 @@ a {
   background-color: #a1a1bbfd;
   position: relative;
   transition: all 300ms ease;
-  
 }
 
 .footer__logo--hover {
@@ -1049,7 +1205,6 @@ a {
 .footer__logo:hover {
   background-color: white;
   box-shadow: 0 0 12px 4px white;
-  
 }
 
 .footer__logo:hover .footer__logo--hover {
@@ -1134,7 +1289,6 @@ a {
   }
 }
 
-
 @media (max-width: 1400px) {
   .link-box {
     flex-direction: column;
@@ -1147,15 +1301,12 @@ a {
   .sidebar {
     width: 30vw;
   }
-  .main-content {
+  #main-content {
     width: 70vw;
   }
 }
 
-
 @media (max-width: 1024px) {
-
-
   .nav__btn {
     font-size: 16px;
   }
@@ -1208,23 +1359,28 @@ a {
   .footer__links {
     font-size: 16px;
   }
+  .tech:hover .tech__title {
+    transform: translate(-50%, 36px)
+  }
 }
 
-@media (max-width: 768px) {  
-
+@media (max-width: 768px) {
   .sidebar {
     position: fixed;
     width: 50%;
+    background-color: #08130fef;
+    box-shadow: inset 0 0 24px 8px #30cc3d33;
+
   }
 
   .sidebar__exit {
     display: block;
   }
   .main__nav {
-    display: block;
+    display: flex;
   }
 
-  .main-content {
+  #main-content {
     width: 100%;
   }
 
@@ -1234,7 +1390,6 @@ a {
 
   .resume__top h2 {
     font-size: 24px;
- 
   }
 
   .footer {
@@ -1242,27 +1397,34 @@ a {
   }
   .footer__logo {
     max-width: 60px;
-    margin: 0 8px
+    margin: 0 8px;
   }
   .footer__row {
     padding: 0 32px;
   }
   .footer__links {
- padding: 24px 8px;
+    padding: 24px 8px;
     box-shadow: inset 0 0 12px 8px #ffffff42, 0 0 24px 8px #80808048;
     background-color: #2c091b9c;
     gap: 12px;
-    
   }
   .footer__container {
     padding: 48px 0;
   }
+  .tech {
+    margin: 16px 0 44px 0;
+  }
+  .tech__img--wrapper {
+    padding: 4px;
+  }
 }
 
 @media (max-width: 540px) {
-
   .sidebar {
     width: 60%;
+  }
+  .profile {
+    width: 90%;
   }
   .resume__download {
     max-width: 160px;
@@ -1280,7 +1442,7 @@ a {
   .main__container {
     padding: 40px 0;
   }
-  
+
   .about-me__container {
     padding: 20px 0;
   }
@@ -1289,7 +1451,7 @@ a {
     font-size: 16px;
   }
   .projects {
-    display: flex; 
+    display: flex;
     flex-direction: column;
   }
 
@@ -1310,17 +1472,29 @@ a {
   .project__para {
     font-size: 16px;
   }
+
+  .tech {
+    padding: 4px;
+  }
+    .tech:hover .tech__title {
+    transform: translate(-50%, 24px)
+  }
 }
 @media (max-width: 480px) {
-    .sidebar {
+  #welcome-section h1 {
+  font-size: 3rem;
+  letter-spacing: 0.2rem;
+}
+  .sidebar {
     width: 65%;
   }
+
   .main__row {
     padding: 0 20px;
   }
 
   .used-techs {
-    margin-top: 24px; 
+    margin-top: 24px;
     gap: 12px;
   }
   .used-techs p {
@@ -1361,7 +1535,6 @@ a {
     margin: 24px 0;
     margin-bottom: 28px;
     width: 90%;
-
   }
 
   .project__link {
@@ -1385,20 +1558,27 @@ a {
   .info__extra p {
     font-size: 8px;
   }
+
+  .footer__to-top {
+    display: block;
+  }
 }
 
 @media (max-width: 360px) {
+    #welcome-section h1 {
+  font-size: 2.4rem;
+  letter-spacing: 0.2rem;
+}
   .profile {
     padding-bottom: 0;
     scale: 80%;
   }
-      .sidebar {
+  .sidebar {
     width: 80%;
     padding: 20px 40px;
   }
   .info {
     padding: 12px;
-
   }
   .info__extra {
     padding: 4px 20px;
@@ -1408,6 +1588,41 @@ a {
   }
 }
 
+
+@media screen and (max-width: 375px) and (max-height: 667px) {
+
+  .sidebar {
+    padding: 20px 40px;
+  }
+  .profile {
+    padding-bottom: 4px;
+  }
+  .info {
+    padding-right: 20px;
+  }
+  .name {
+    font-size: 14px;
+  }
+  .job-title {
+    font-size: 10px;
+  }
+  .info__extra {
+    padding: 8px 20px;
+  }
+
+  .info__extra h3 {
+    font-size: 12px;
+  }
+
+  .nav__btns {
+    gap: 8px;
+  }
+  .nav__btn {
+    font-size: 12px;
+    padding: 8px 28px;
+  }
+}
+/* 
 @media screen and (orientation: landscape) and (max-width: 991px) {
   .sidebar {
     flex-direction: row;
@@ -1488,4 +1703,4 @@ a {
     border-radius: 6px;
   }
   
-}
+} */

@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMobileScreen, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUpRightFromSquare, faMobileScreen, faTimes } from "@fortawesome/free-solid-svg-icons";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
@@ -34,7 +34,7 @@ const ProjectDetails = ({ projectData, currentId, toggleProject, componentRef,
       <div className="project__details">
         <FontAwesomeIcon
           onClick={() => toggleProject()}
-          className="project__exit"
+          className="project__exit clickable"
           icon={faTimes}
         />
         <div className="project__title">{projectData[currentId]?.title}</div>
@@ -60,7 +60,7 @@ const ProjectDetails = ({ projectData, currentId, toggleProject, componentRef,
                 Live <br />
                 View
               </p>
-              <FontAwesomeIcon className="project__repo--mobile" icon={faMobileScreen} />
+              <FontAwesomeIcon className="project__repo--mobile" icon={faArrowUpRightFromSquare} />
             </div>
           </a>
         </div>

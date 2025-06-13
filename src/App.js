@@ -7,16 +7,17 @@ import BackgroundImg from "./assets/BackgroundExample.png";
 import Projects from "./components/Projects/Projects";
 import useWindowWidth from "./hooks/useWindowWidth";
 
+
 const MobileBreak = 768;
 
 function App() {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
-  const width = useWindowWidth()
+  const width = useWindowWidth();
   const [isSidebarOpen, setIsSidebarOpen] = useState(() => {
-    const initialWidth = typeof window !== 'undefined' ? window.innerWidth : (MobileBreak + 1)
+    const initialWidth =
+      typeof window !== "undefined" ? window.innerWidth : MobileBreak + 1;
     return initialWidth > MobileBreak;
-  })
-  
+  });
 
 
   const toggleResumeModal = () => {
@@ -32,20 +33,21 @@ function App() {
     if (width <= MobileBreak) {
       setIsSidebarOpen(false);
     }
-  }
+  };
 
   useEffect(() => {
-  if (width > MobileBreak) {
-  setIsSidebarOpen(true)
-  } else {
-  setIsSidebarOpen(false)
-  }
-  }, [width])
+    if (width > MobileBreak) {
+      setIsSidebarOpen(true);
+    } else {
+      setIsSidebarOpen(false);
+    }
+  }, [width]);
 
- return (
+  return (
     <div
       className="App"
       style={{
+
         backgroundImage: `url(${BackgroundImg})`,
         backgroundSize: "100vw",
         backgroundRepeat: "repeat-y",
@@ -54,25 +56,24 @@ function App() {
       <div className="App-bg">
         <WelcomeSection />
         <div className="content-wrapper">
-
           {isSidebarOpen && (
-            <SideBar 
-            closeSidebar={closeSidebar}
+            <SideBar
+              closeSidebar={closeSidebar}
               toggleSidebar={toggleSidebar}
               toggleResumeModal={toggleResumeModal}
             />
           )}
-          <div className="main__bg"></div>
-          <div className="main-content">
+      
+          <section id="main-content">
             <Main
               toggleSidebar={toggleSidebar}
               toggleResumeModal={toggleResumeModal}
               isResumeOpen={isResumeOpen}
             />
             <Projects />
-          </div>
+          </section>
         </div>
-        <Footer toggleResumeModal={toggleResumeModal}/>
+        <Footer toggleResumeModal={toggleResumeModal} />
       </div>
     </div>
   );

@@ -10,6 +10,7 @@ const Main = ({ toggleResumeModal, isResumeOpen,
     <>
                   <div className="main__nav">
           <div
+          className="main__nav--btn"
           onClick={() => toggleSidebar()}>
             <FontAwesomeIcon
             icon={faBars} />

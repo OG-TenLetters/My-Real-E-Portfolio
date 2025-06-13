@@ -60,7 +60,8 @@ const ResumeModal = ({toggleResumeModal}) => {
               )}
               <div className="resume__img--wrapper">
                 <div className="resume__img--cover"></div>
-                <img className="resume__img" src={resumeJpg} alt="" />
+                <div className="resume__img--skeleton"></div>
+                {/* <img className="resume__img" src={resumeJpg} alt="" /> */}
               </div>
               {/* <div className="resume__zoom">
                 <div className="resume__zoom--minus">

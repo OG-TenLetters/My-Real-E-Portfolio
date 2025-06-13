@@ -15,6 +15,13 @@ const Footer = ({toggleResumeModal}) => {
   }
   return (
     <section id="footer">
+      <div
+      onClick={() => toTop()}
+      className="footer__to-top">
+        <div className="triangle">
+          ^
+        </div>
+      </div>
         <div className="footer__bg--wrapper"><img className="footer__bg" src={FooterSvg} alt="" /></div>
       <footer className="footer">
         <div className="footer__container">
@@ -28,7 +35,7 @@ const Footer = ({toggleResumeModal}) => {
               </a>
               <div 
               onClick={() => toTop()}
-              className="footer__logo">
+              className="footer__logo clickable">
                 <img className="footer__logo--img" src={Logo} alt="" />
                 <div className="footer__logo--hover   "><FontAwesomeIcon icon={faArrowUp}/> Top</div>
               </div>
