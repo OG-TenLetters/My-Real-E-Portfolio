@@ -115,9 +115,9 @@ const SideBar = ({
         <a href="#my-projects">
           <NavButton title={"My Projects"} />
         </a>
-        <a onClick={() => handleOpenedContact()} href="#">
+        <div onClick={() => handleOpenedContact()}>
           <NavButton title={"Contact"} />
-        </a>
+        </div>
       </div>
     </div>
   );
