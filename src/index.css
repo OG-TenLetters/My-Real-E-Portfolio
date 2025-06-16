@@ -364,8 +364,9 @@ a {
 
 .welcome__text {
   visibility: visible;
-  opacity: 1;
-  transition: opacity 600ms ease;
+  display: flex;
+  justify-content: center;
+  animation: fadeIn 300ms ease;
 }
 
 .clickable {
@@ -408,12 +409,14 @@ a {
   padding: 32px;
   width: 100%;
   z-index: 40;
+  pointer-events: none;
 }
 
 .main__nav--btn {
   display: flex;
   justify-content: center;
   align-items: center;
+  pointer-events: all;
 }
 
 .main__nav--btn .fa-bars {
@@ -998,7 +1001,8 @@ a {
 }
 
 .tech-box__expand--btn {
-  color: #ffffffb0;
+  /* color: #ffffffb0; */
+  color: transparent;
   width: 100%;
   max-width: 228px;
   padding: 4px;
@@ -1018,7 +1022,8 @@ a {
 
 .tech-box__expand--btn:hover {
   transform: translate(-50%, -4px);
-  color: white;
+  /* color: white; */
+  color: transparent;
   background: #3041772f;
 }
 .tech-box__expand--btn:hover:active {
@@ -1586,6 +1591,39 @@ a {
   100% {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+.invisible {
+  color: transparent;
+  border-color: transparent;
+}
+.sending {
+
+  width: 100%;
+  font-size: 60px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms ease;
+  position: absolute;
+  top: 50%;
+  bottom: 0;
+  left: 50%;
+  right: 0;
+  transform: translate(-50%, -50%);
+}
+.sending.show {
+  opacity: 1;
+}
+.spin {
+  animation: spin 300ms linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+   transform: rotate(360deg);
   }
 }
 

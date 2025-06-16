@@ -16,7 +16,6 @@ const useScrollToCenter = (shouldScroll) => {
 
       let size = 0;
       const screenSizes = (size) => {
-        console.log(width);
 
         if (width >= 1500) {
           size = 40;
@@ -33,7 +32,6 @@ const useScrollToCenter = (shouldScroll) => {
         }
         return size;
       };
-      console.log(screenSizes(size));
       const yOffset =
         window.scrollY +
         rect.top -

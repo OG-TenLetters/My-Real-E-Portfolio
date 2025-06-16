@@ -1,37 +1,66 @@
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faSpinner, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
+import { send, sendForm, init, EmailJSResponseStatus } from "@emailjs/browser";
 
 const ContactModal = ({
   isContactOpen,
-  openContactModal,
   closeContactModal,
-  isContactSubmitted,
   setIsContactSubmitted,
+  setNameInput,
 }) => {
   const [shouldRender, setShouldRender] = useState(isContactOpen);
   const [isClosing, setIsClosing] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [tempValue, setTempValue] = useState("");
 
   const animationDurationMs = 1700;
 
+  const handleNameValue = (event) => {
+    setTempValue(event.target.value);
+  };
+  const captureValue = () => {
+    setNameInput(tempValue);
+  };
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    sendForm(
+      "service_dmf4e7a",
+      "template_acfbkmf",
+      e.target,
+      "qVGgK80-uMkkItvbU"
+    )
+      .then(() => {
+        setIsContactSubmitted(true);
+      })
+      .catch(() => {
+        alert(
+          "The email service is temporarily unavailable. Please email me directly at 1tenletters0@gmail.com"
+        );
+      });
+
+    setTimeout(() => {
+      setIsLoading(false);
+      closeContactModal();
+    }, 300);
+  };
+
   useEffect(() => {
     if (isContactOpen) {
-
       setIsClosing(false);
     } else {
       if (shouldRender) {
-        setIsClosing(true); 
+        setIsClosing(true);
         const timeoutId = setTimeout(() => {
-    
-          setIsClosing(false); 
+          setIsClosing(false);
         }, animationDurationMs);
 
         return () => clearTimeout(timeoutId);
       }
     }
-  }, [isContactOpen, shouldRender]); 
-
-
+  }, [isContactOpen, shouldRender]);
 
   return (
     <>
@@ -56,12 +85,14 @@ const ContactModal = ({
             ${isClosing ? "contact-modal--slide-left" : ""}
           `}
         >
-          <div className="contact-modal__exit">
-            <FontAwesomeIcon
-              onClick={() => closeContactModal()}
-              icon={faTimes}
-            />
-          </div>
+          {!isLoading && (
+            <div className="contact-modal__exit">
+              <FontAwesomeIcon
+                onClick={() => closeContactModal()}
+                icon={faTimes}
+              />
+            </div>
+          )}
           <h3 className="contact-modal__header">Let's Have a Chat!</h3>
           <h4 className="contact-modal__sub-header">
             I'm currently open to new opportunities.
@@ -74,35 +105,43 @@ const ContactModal = ({
             ${isClosing ? "contact-modal--shrink" : ""}
           `}
         >
-          <form id="contact__form" action="" onSubmit={null}>
-            <div className="form__item">
-              <label className="form__item--label">Name:</label>
-              <input
-                className="input"
-                name="user_name"
-                type="text"
-                required
-              ></input>
+          <div
+            className={`contact-form__container ${isLoading && "invisible"}`}
+          >
+            <div className="sending">
+              <FontAwesomeIcon icon={faSpinner} />
             </div>
-            <div className="form__item">
-              <label className="form__item--label">Email:</label>
-              <input
-                className="input"
-                name="user_email"
-                type="text"
-                required
-              ></input>
-            </div>
-            <div className="form__item">
-              <label className="form__item--label">Message:</label>
-              <textarea
-                className="input"
-                name="message"
-                type="text"
-                required
-              ></textarea>
-            </div>
-          </form>
+            <form id="contact__form" action="" onSubmit={sendEmail}>
+              <div className="form__item">
+                <label className="form__item--label">Name:</label>
+                <input
+                  className="input"
+                  name="user_name"
+                  type="text"
+                  onChange={handleNameValue}
+                  required
+                ></input>
+              </div>
+              <div className="form__item">
+                <label className="form__item--label">Email:</label>
+                <input
+                  className="input"
+                  name="user_email"
+                  type="text"
+                  required
+                ></input>
+              </div>
+              <div className="form__item">
+                <label className="form__item--label">Message:</label>
+                <textarea
+                  className="input"
+                  name="message"
+                  type="text"
+                  required
+                ></textarea>
+              </div>
+            </form>
+          </div>
         </div>
         <div
           className={`
@@ -111,9 +150,21 @@ const ContactModal = ({
             ${isClosing ? "contact-modal--slide-right" : ""}
           `}
         >
-          <button id="contact__submit" className="form__submit">
-            Send it My Way!
-          </button>
+          {isLoading ? (
+            <button id="contact__submit" className="form__submit">
+              <FontAwesomeIcon className="spin" icon={faSpinner} />
+            </button>
+          ) : (
+            <button
+              onClick={() => captureValue()}
+              id="contact__submit"
+              type="submit"
+              form="contact__form"
+              className="form__submit"
+            >
+              Send it My Way!
+            </button>
+          )}
         </div>
       </div>
     </>

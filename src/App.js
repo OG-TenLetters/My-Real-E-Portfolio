@@ -18,6 +18,7 @@ function App() {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isContactSubmitted, setIsContactSubmitted] = useState(false);
   const [pageHidden, setPageHidden] = useState(false);
+  const [nameInput, setNameInput] = useState('')
   const doScrollToTop = useScrollToTopAndFinish();
   const [isSidebarOpen, setIsSidebarOpen] = useState(() => {
     const initialWidth =
@@ -25,9 +26,6 @@ function App() {
     return initialWidth > MobileBreak;
   });
 
-  useEffect(() => {
-    console.log("isContactOpen state changed:", isContactOpen);
-  }, [isContactOpen]);
 
   const toggleResumeModal = () => {
     setIsResumeOpen(!isResumeOpen);
@@ -38,10 +36,6 @@ function App() {
       setIsSidebarOpen(!isSidebarOpen);
     }
   };
-
-  useEffect(() => {
-    console.log("isContactOpen state changed:", isContactOpen);
-  }, [isContactOpen]);
 
   const openContactModal = useCallback(async () => {
     setPageHidden(true);
@@ -73,13 +67,15 @@ function App() {
       <div className="App-bg">
         <TriangleBgAnimation />
         <ContactModal
+        setNameInput={setNameInput}
           isContactOpen={isContactOpen}
-          openContactModal={openContactModal}
+           setIsContactOpen={setIsContactOpen}
           closeContactModal={closeContactModal}
-          isContactSubmitted={isContactSubmitted}
           setIsContactSubmitted={setIsContactSubmitted}
         />
-        <WelcomeSection
+        <WelcomeSection 
+        nameInput={nameInput}
+        pageHidden={pageHidden}
           isContactOpen={isContactOpen}
           isContactSubmitted={isContactSubmitted}
         />

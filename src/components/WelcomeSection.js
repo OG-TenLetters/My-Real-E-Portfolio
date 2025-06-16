@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const WelcomeSection = ({
-  isContactOpen, isContactSubmitted }) => {
+  isContactOpen, isContactSubmitted, pageHidden, nameInput }) => {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
@@ -50,13 +50,13 @@ const WelcomeSection = ({
         <h1
           style={{
         
-            fontSize: `${isContactSubmitted && "20px"}`,
+            fontSize: `${isContactSubmitted && "24px"}`,
             width: `${isContactSubmitted && "80%"}`,
             textAlign: `${isContactSubmitted && "center"}`,
           }}
-        >{`${isContactOpen ? "" :
+        >{`${pageHidden ? "" :
           isContactSubmitted && !isContactOpen
-            ? "Thank you, Sage! I'm looking forward to speaking with you soon."
+            ? `Thank you, ${nameInput}! I'm looking forward to speaking with you soon.`
             : "Welcome"
         }`}</h1>
         <a href="#main-content" className={`scroll ${isContactSubmitted && "hidden"}`}>
