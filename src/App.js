@@ -25,8 +25,43 @@ function App() {
       typeof window !== "undefined" ? window.innerWidth : MobileBreak + 1;
     return initialWidth > MobileBreak;
   });
+  
+  const getScrollbarWidth = () => {
+    const outer = document.createElement('div');
+    outer.style.visibility = 'hidden';
+    outer.style.overflow = 'scroll'; 
+    outer.style.msOverflowStyle = 'scrollbar'; 
+    document.body.appendChild(outer);
+    
+    
+    const inner = document.createElement('div');
+    outer.appendChild(inner);
+    
+    
+    const scrollbarWidth = (outer.offsetWidth - inner.offsetWidth);
+    
+    outer.parentNode.removeChild(outer);
+    
+    return scrollbarWidth;
+  };
+  
+  useEffect(() => {
 
+      if (isResumeOpen | isContactOpen ) {
+      document.body.classList.add("lockScroll");
+            document.body.style.paddingRight = `${getScrollbarWidth()}px`;
 
+    } else {
+      document.body.classList.remove("lockScroll");
+    }
+
+    return () => {
+      document.body.classList.remove("lockScroll");
+      document.body.style.paddingRight = '0px';
+    };
+  }, [isResumeOpen | isContactOpen]);
+
+  
   const toggleResumeModal = () => {
     setIsResumeOpen(!isResumeOpen);
   };

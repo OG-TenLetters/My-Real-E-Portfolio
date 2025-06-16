@@ -20,7 +20,7 @@ const Main = ({
       <section className="main">
         <ResumeModal isResumeOpen={isResumeOpen} toggleResumeModal={toggleResumeModal} />
         <div className="main__container">
-          <div className="main__row">
+          <div className={`main__row ${isResumeOpen && "dim"}`}>
             <TechBox pageHidden={pageHidden}/>
             <section id="about-me">
                 <div className="about-me__container">

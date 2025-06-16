@@ -12,6 +12,42 @@ const Projects = ({ pageHidden }) => {
 
   const componentRef = useScrollToCenter(isProjectOpen);
 
+    const getScrollbarWidth = () => {
+    const outer = document.createElement('div');
+    outer.style.visibility = 'hidden';
+    outer.style.overflow = 'scroll'; 
+    outer.style.msOverflowStyle = 'scrollbar'; 
+    document.body.appendChild(outer);
+    
+    
+    const inner = document.createElement('div');
+    outer.appendChild(inner);
+    
+    
+    const scrollbarWidth = (outer.offsetWidth - inner.offsetWidth);
+    
+    outer.parentNode.removeChild(outer);
+    
+    return scrollbarWidth;
+  };
+
+  
+  useEffect(() => {
+
+      if (isProjectOpen ) {
+      document.body.classList.add("lockScroll");
+     document.body.style.paddingRight = `${getScrollbarWidth()}px`;
+    } else {
+      document.body.classList.remove("lockScroll");
+    }
+
+    return () => {
+      document.body.classList.remove("lockScroll");
+      document.body.style.paddingRight = '0px';
+    };
+  }, [isProjectOpen]);
+
+
   useEffect(() => {
     const techHover = techHoverRef.current;
     if (techHover) {
