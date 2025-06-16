@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Footer from "./components/Footer";
 import SideBar from "./components/SideBar";
 import WelcomeSection from "./components/WelcomeSection";
@@ -7,6 +7,8 @@ import BackgroundImg from "./assets/BackgroundExample.png";
 import Projects from "./components/Projects/Projects";
 import useWindowWidth from "./hooks/useWindowWidth";
 import ContactModal from "./components/ContactModal";
+import TriangleBgAnimation from "./components/TriangleBgAnimation";
+import useScrollToTopAndFinish from "./hooks/useScrollTopTopAndFinish";
 
 const MobileBreak = 768;
 
@@ -15,11 +17,17 @@ function App() {
   const width = useWindowWidth();
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isContactSubmitted, setIsContactSubmitted] = useState(false);
+  const [pageHidden, setPageHidden] = useState(false);
+  const doScrollToTop = useScrollToTopAndFinish();
   const [isSidebarOpen, setIsSidebarOpen] = useState(() => {
     const initialWidth =
       typeof window !== "undefined" ? window.innerWidth : MobileBreak + 1;
     return initialWidth > MobileBreak;
   });
+
+  useEffect(() => {
+    console.log("isContactOpen state changed:", isContactOpen);
+  }, [isContactOpen]);
 
   const toggleResumeModal = () => {
     setIsResumeOpen(!isResumeOpen);
@@ -30,19 +38,22 @@ function App() {
       setIsSidebarOpen(!isSidebarOpen);
     }
   };
-  const openContactModal = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-    setTimeout(() => {
-      setIsContactOpen(true);
-    }, 0);
-  };
 
-  const closeContactModal = () => {
-    setIsContactOpen(false)
-  }
+  useEffect(() => {
+    console.log("isContactOpen state changed:", isContactOpen);
+  }, [isContactOpen]);
+
+  const openContactModal = useCallback(async () => {
+    setPageHidden(true);
+    await doScrollToTop();
+    setIsContactOpen(true);
+  }, [doScrollToTop]);
+
+  const closeContactModal = useCallback(() => {
+    setPageHidden(false);
+    setIsContactOpen(false);
+  }, []);
+
   const closeSidebar = () => {
     if (width <= MobileBreak) {
       setIsSidebarOpen(false);
@@ -58,15 +69,9 @@ function App() {
   }, [width]);
 
   return (
-    <div
-      className="App"
-      style={{
-        backgroundImage: `url(${BackgroundImg})`,
-        backgroundSize: "100vw",
-        backgroundRepeat: "repeat-y",
-      }}
-    >
+    <div className="App">
       <div className="App-bg">
+        <TriangleBgAnimation />
         <ContactModal
           isContactOpen={isContactOpen}
           openContactModal={openContactModal}
@@ -75,11 +80,13 @@ function App() {
           setIsContactSubmitted={setIsContactSubmitted}
         />
         <WelcomeSection
-        isContactOpen={isContactOpen} isContactSubmitted={isContactSubmitted} />
+          isContactOpen={isContactOpen}
+          isContactSubmitted={isContactSubmitted}
+        />
         <div className="content-wrapper">
           {isSidebarOpen && (
             <SideBar
-              isContactOpen={isContactOpen}
+              pageHidden={pageHidden}
               openContactModal={openContactModal}
               closeSidebar={closeSidebar}
               toggleSidebar={toggleSidebar}
@@ -89,17 +96,17 @@ function App() {
 
           <section id="main-content">
             <Main
-              isContactOpen={isContactOpen}
+              pageHidden={pageHidden}
               openContactModal={openContactModal}
               toggleSidebar={toggleSidebar}
               toggleResumeModal={toggleResumeModal}
               isResumeOpen={isResumeOpen}
             />
-            <Projects isContactOpen={isContactOpen} />
+            <Projects pageHidden={pageHidden} />
           </section>
         </div>
         <Footer
-        isContactOpen={isContactOpen}
+          pageHidden={pageHidden}
           openContactModal={openContactModal}
           toggleResumeModal={toggleResumeModal}
         />

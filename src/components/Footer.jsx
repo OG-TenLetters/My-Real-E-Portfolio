@@ -3,7 +3,7 @@ import Logo from "../assets/Jadon-Logo.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 
-const Footer = ({ toggleResumeModal, openContactModal, isContactOpen }) => {
+const Footer = ({ toggleResumeModal, openContactModal, pageHidden }) => {
   const toTop = () => {
     window.scrollTo({
       top: 0,
@@ -12,7 +12,7 @@ const Footer = ({ toggleResumeModal, openContactModal, isContactOpen }) => {
   };
   return (
     <section id="footer">
-    <div className={`footer__styling ${isContactOpen && "contact-modal--open"}`}>
+    <div className={`footer__styling ${pageHidden && "contact-modal--open"}`}>
         <div onClick={() => toTop()} className="footer__to-top">
           <div className="triangle">^</div>
         </div>

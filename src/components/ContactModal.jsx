@@ -1,6 +1,6 @@
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const ContactModal = ({
   isContactOpen,
@@ -9,20 +9,71 @@ const ContactModal = ({
   isContactSubmitted,
   setIsContactSubmitted,
 }) => {
+  const [shouldRender, setShouldRender] = useState(isContactOpen);
+  const [isClosing, setIsClosing] = useState(false);
+
+  const animationDurationMs = 1700;
+
+  useEffect(() => {
+    if (isContactOpen) {
+
+      setIsClosing(false);
+    } else {
+      if (shouldRender) {
+        setIsClosing(true); 
+        const timeoutId = setTimeout(() => {
+    
+          setIsClosing(false); 
+        }, animationDurationMs);
+
+        return () => clearTimeout(timeoutId);
+      }
+    }
+  }, [isContactOpen, shouldRender]); 
+
+
+
   return (
     <>
-      <div className={`${isContactOpen && "show"} contact-modal__container`}>
-        <div className={`${isContactOpen && "cover-fade"} contact-modal__cover`}></div>
-        <div className={`${isContactOpen && "contact-modal--slide"} contact-modal__third contact-modal__first`}>
+      <div
+        className={`
+          contact-modal__container
+          ${isContactOpen && !isClosing ? "show" : ""}
+          ${isClosing ? "closing" : ""}
+        `}
+      >
+        <div
+          className={`
+            contact-modal__cover
+            ${isContactOpen && !isClosing ? "cover-fade" : ""}
+            ${isClosing ? "cover-fade-out" : ""}
+          `}
+        ></div>
+        <div
+          className={`
+            contact-modal__third contact-modal__first
+            ${isContactOpen && !isClosing ? "contact-modal--slide-in" : ""}
+            ${isClosing ? "contact-modal--slide-left" : ""}
+          `}
+        >
           <div className="contact-modal__exit">
-            <FontAwesomeIcon onClick={() => closeContactModal() } icon={faTimes} />
+            <FontAwesomeIcon
+              onClick={() => closeContactModal()}
+              icon={faTimes}
+            />
           </div>
           <h3 className="contact-modal__header">Let's Have a Chat!</h3>
           <h4 className="contact-modal__sub-header">
             I'm currently open to new opportunities.
           </h4>
         </div>
-        <div className={`${isContactOpen && "contact-modal--zoom"} contact-modal__third contact-modal__middle`}>
+        <div
+          className={`
+            contact-modal__third contact-modal__middle
+            ${isContactOpen && !isClosing ? "contact-modal--zoom-in" : ""}
+            ${isClosing ? "contact-modal--shrink" : ""}
+          `}
+        >
           <form id="contact__form" action="" onSubmit={null}>
             <div className="form__item">
               <label className="form__item--label">Name:</label>
@@ -53,7 +104,13 @@ const ContactModal = ({
             </div>
           </form>
         </div>
-        <div className={`${isContactOpen && "contact-modal--slide"} contact-modal__third contact-modal__last`}>
+        <div
+          className={`
+            contact-modal__third contact-modal__last
+            ${isContactOpen && !isClosing ? "contact-modal--slide-in" : ""}
+            ${isClosing ? "contact-modal--slide-right" : ""}
+          `}
+        >
           <button id="contact__submit" className="form__submit">
             Send it My Way!
           </button>

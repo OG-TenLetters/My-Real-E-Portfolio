@@ -46,7 +46,7 @@ const WelcomeSection = ({
       id="welcome-section"
       // style={{ height: currentHeight, fontSize: currentFontSize }}
     >
-      <div class={`welcome__text ${isContactOpen && "contact-modal--open"}`}>
+      <div className={`welcome__text ${isContactOpen && "contact-modal--open"}`}>
         <h1
           style={{
         
@@ -54,13 +54,13 @@ const WelcomeSection = ({
             width: `${isContactSubmitted && "80%"}`,
             textAlign: `${isContactSubmitted && "center"}`,
           }}
-        >{`${
-          isContactSubmitted
+        >{`${isContactOpen ? "" :
+          isContactSubmitted && !isContactOpen
             ? "Thank you, Sage! I'm looking forward to speaking with you soon."
             : "Welcome"
         }`}</h1>
-        <a href="#main-content" class={`scroll ${isContactSubmitted && "hidden"}`}>
-          <div class="scroll__icon click"></div>
+        <a href="#main-content" className={`scroll ${isContactSubmitted && "hidden"}`}>
+          <div className="scroll__icon click"></div>
         </a>
       </div>
     </div>

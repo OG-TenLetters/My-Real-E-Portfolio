@@ -21,7 +21,7 @@ const SideBar = ({
   toggleSidebar,
   closeSidebar,
   openContactModal,
-  isContactOpen,
+  pageHidden,
 }) => {
   const [imgLoaded, setImgLoaded] = useState(false);
   const handleResume = () => {
@@ -37,7 +37,7 @@ const SideBar = ({
   }
 
   return (
-    <div className={`sidebar ${isContactOpen && "contact-modal--open"}`}>
+    <div className={`sidebar ${pageHidden && "contact-modal--open"}`}>
       <div onClick={() => toggleSidebar()} className="sidebar__exit clickable">
         <FontAwesomeIcon icon={faBars} />
       </div>
@@ -92,7 +92,7 @@ const SideBar = ({
               <Linkbubble social={faLinkedin} />
             </a>
             <div 
-            onClick={() => openContactModal()}
+            onClick={() => handleOpenedContact()}
             className="link-color">
               <Linkbubble social={faEnvelope} />
             </div>

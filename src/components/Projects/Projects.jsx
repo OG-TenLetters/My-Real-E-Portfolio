@@ -4,7 +4,7 @@ import ProjectDetailsApi from "./ProjectDetailsApi";
 import ProjectDetails from "./ProjectDetails";
 import useScrollToCenter from "../../hooks/useScrollToCenter";
 
-const Projects = ({ isContactOpen }) => {
+const Projects = ({ pageHidden }) => {
   const [isProjectOpen, setisProjectOpen] = useState(false);
   const [currentId, setCurrentId] = useState(null);
   const projectData = ProjectDetailsApi();
@@ -37,7 +37,7 @@ const Projects = ({ isContactOpen }) => {
   };
   return (
     <section id="my-projects">
-      <div className={`my-projects ${isContactOpen && "contact-modal--open"}`}>
+      <div className={`my-projects ${pageHidden && "contact-modal--open"}`}>
         <h2 className={`projects__header`}>
           My <br />
           Projects

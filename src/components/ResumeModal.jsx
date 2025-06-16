@@ -13,7 +13,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
-const ResumeModal = ({toggleResumeModal}) => {
+const ResumeModal = ({isResumeOpen, toggleResumeModal}) => {
   const [downloadMenu, setDownloadMenu] = useState(false);
   const [isImgLoaded, setIsImgLoaded] = useState(false);
   const toggleDownloadMenu = () => {
@@ -26,7 +26,7 @@ const ResumeModal = ({toggleResumeModal}) => {
 
   return (
     <section id="resume__modal">
-      <div className="resume__modal">
+      <div className={`resume__modal ${isResumeOpen ? "show" : "hidden" }`}>
           <div onClick={() => toggleResumeModal()} className="resume__modal--exit">
               <FontAwesomeIcon icon={faTimes} />
           </div>

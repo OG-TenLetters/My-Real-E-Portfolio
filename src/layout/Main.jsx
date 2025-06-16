@@ -7,7 +7,7 @@ const Main = ({
   toggleResumeModal,
   isResumeOpen,
   toggleSidebar,
-  isContactOpen,
+  pageHidden,
   openContactModal,
 }) => {
   return (
@@ -18,13 +18,13 @@ const Main = ({
         </div>
       </div>
       <section className="main">
-        {isResumeOpen && <ResumeModal toggleResumeModal={toggleResumeModal} />}
+        <ResumeModal isResumeOpen={isResumeOpen} toggleResumeModal={toggleResumeModal} />
         <div className="main__container">
           <div className="main__row">
-            <TechBox isContactOpen={isContactOpen}/>
+            <TechBox pageHidden={pageHidden}/>
             <section id="about-me">
                 <div className="about-me__container">
-              <div className={`about-me ${isContactOpen && "contact-modal--open"}`}>
+              <div className={`about-me ${pageHidden && "contact-modal--open"}`}>
                   <h2 className="about-me__header">
                     About <br /> Me:
                   </h2>

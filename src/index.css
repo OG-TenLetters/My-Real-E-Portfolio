@@ -73,6 +73,11 @@ a {
   width: 100%;
 }
 
+.show {
+  visibility: visible;
+  opacity: 1;
+}
+
 .hidden {
   visibility: hidden;
   opacity: 0;
@@ -131,11 +136,6 @@ a {
   }
 }
 
-.contact-modal--open {
-  visibility: hidden;
-  opacity: 0;
-}
-
 .contact-modal__cover {
   position: absolute;
   pointer-events: none;
@@ -143,17 +143,11 @@ a {
   left: 0;
   bottom: 0;
   right: 0;
-   border-radius: 20px;
-   box-shadow: none;
-   z-index: 1;
-   transition: all 1.2s ease 1.2s;
-   visibility: 0;
-   opacity: 0;
-  }
-  .cover-fade {
-  box-shadow: inset 0 0 20px 20px #630738;
-  opacity: 1;
-  visibility: visible;
+  border-radius: 20px;
+  box-shadow: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s ease 0.25s;
 }
 
 .contact-modal__container {
@@ -161,23 +155,15 @@ a {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  margin: 0 40px;
-  z-index: 100;
+  margin: 0 auto;
+  z-index: 200;
   width: 80%;
   max-width: 1000px;
-  /* background-color: #01110c; */
   display: flex;
   flex-direction: column;
   border-radius: 20px;
-
   gap: 4px;
-  visibility: hidden;
-  opacity: 0;
-}
-
-.show {
-  opacity: 1;
-  visibility: visible;
+  overflow: hidden;
 }
 
 .contact-modal__third {
@@ -185,24 +171,23 @@ a {
   background-color: #3b0823;
   display: flex;
   flex-direction: column;
-  transition: all .9s .6s;
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .contact-modal__first {
   text-align: center;
   border-radius: 20px 20px 0 0;
   border-bottom: 2px solid #163b08;
-  transform: translateX(-1000px);
-  opacity: 0;
-  visibility: hidden;
+  transform: translateX(100%);
 }
-
 
 .contact-modal__exit {
   position: absolute;
   top: 40px;
   right: 40px;
   font-size: 32px;
+  cursor: pointer;
 }
 
 .contact-modal__header {
@@ -218,31 +203,62 @@ a {
   border-top: 2px solid #163b08;
   border-bottom: 2px solid #163b08;
   transform: scale(0);
-  opacity: 0;
-  visibility: hidden;
-}
-
-.contact-modal--zoom {
-  transform: scale(1);
-  opacity: 1;
-  visibility: visible;
 }
 
 .contact-modal__last {
   align-items: center;
   border-radius: 0 0 20px 20px;
   border-top: 2px solid #163b08;
-    transform: translateX(1000px);
-  opacity: 0;
-  visibility: hidden;
+  transform: translateX(-100%);
 }
 
-.contact-modal--slide {
-  transform: translateX(0);
+/* ---- Entrance Animations ---- */
+
+.contact-modal__container.show {
+  pointer-events: all;
+}
+
+.contact-modal__container.show .contact-modal__third {
   opacity: 1;
-  visibility: visible;
 }
 
+.contact-modal__container.show .contact-modal__cover {
+  opacity: 1;
+  box-shadow: inset 0 0 24px 24px #630738;
+}
+
+.contact-modal__container.show .contact-modal--slide-in {
+  transform: translateX(0);
+}
+
+.contact-modal__container.show .contact-modal--zoom-in {
+  transform: scale(1);
+}
+
+/* ---- Exit Animations ---- */
+
+.contact-modal__container {
+  pointer-events: none;
+}
+
+.contact-modal__container.closing .contact-modal__third {
+  opacity: 0;
+}
+.contact-modal__container.closing .contact-modal__cover {
+  opacity: 0;
+}
+
+.contact-modal__container.closing .contact-modal--slide-left {
+  transform: translateX(100%);
+}
+
+.contact-modal__container.closing .contact-modal--slide-right {
+  transform: translateX(-100%);
+}
+
+.contact-modal__container.closing .contact-modal--shrink {
+  transform: scale(0);
+}
 
 #contact__form {
   display: flex;
@@ -329,13 +345,14 @@ a {
   left: 0;
   width: 100%;
   color: #6f53b1;
-  background-color: #252153d7;
+  background-color: #24204e;
   height: 100vh;
   transition: height 0.1s ease-out, font-size 0.1s ease-out;
   z-index: 10;
   border-bottom: #2c091b 8px double;
 
   box-shadow: inset 0 0 40px 16px #100522;
+  overflow: hidden;
 }
 
 #welcome-section h1 {
@@ -415,15 +432,31 @@ a {
 .resume__modal {
   position: absolute;
   top: 40px;
-  left: 50%;
-  transform: translateX(-50%);
+  right: 50%;
+  transform: translateX(-75%) scale(0.5);
   width: 80%;
   max-width: 1000px;
   border-radius: 20px;
+  margin-top: 40px;
   z-index: 20;
   background-color: #01110c;
   overflow: hidden;
   border: #2c091b 8px double;
+  pointer-events: all;
+  opacity: 0;
+  transition: all 500ms ease;
+}
+
+.resume__modal.show {
+  opacity: 1;
+  transform: translateX(50%) scale(1);
+
+  
+}
+.resume__modal.hidden {
+  pointer-events: none;
+  transform: translateX(-75%) scale(0.5);
+  opacity: 0;
 }
 
 .resume__modal--exit {
@@ -540,6 +573,7 @@ a {
 }
 .resume__img {
   position: absolute;
+  object-fit: initial;
   top: 0;
   left: 0;
   right: 0;
@@ -569,7 +603,7 @@ a {
   border-radius: 4px;
   width: 100%;
   margin-bottom: 8px;
-  aspect-ratio: 440/621;
+  aspect-ratio: 9/16;
   z-index: -1;
 }
 
@@ -594,8 +628,8 @@ a {
   opacity: 1;
   visibility: visible;
   transition: opacity 600ms ease;
+  pointer-events: none;
 }
-
 
 .sidebar__exit {
   position: absolute;
@@ -605,6 +639,7 @@ a {
   font-size: 28px;
   display: none;
   transform: rotate(90deg);
+  pointer-events: all;
 }
 
 .profile {
@@ -700,6 +735,7 @@ a {
   transition: all 300ms ease;
   color: black;
   border: 1px solid black;
+  pointer-events: all;
 }
 .resume__btn:hover {
   color: white;
@@ -746,6 +782,7 @@ a {
   border-radius: 50%;
   background-color: #6f8a9c1f;
   transition: all 300ms ease;
+  pointer-events: all;
 }
 
 .link:hover {
@@ -789,6 +826,7 @@ a {
   text-align: start;
   padding-left: 16px;
   transition: all 300ms ease;
+  pointer-events: all;
 }
 
 .btn__glimmer:hover .nav__btn {
@@ -812,7 +850,7 @@ a {
   border-radius: 12px;
   /* box-sizing: border-box; */
   margin-bottom: 120px;
-    opacity: 1;
+  opacity: 1;
   visibility: visible;
   transition: opacity 600ms ease;
 }
@@ -1006,6 +1044,9 @@ a {
 
 .about-me__container {
   padding: 60px 0;
+  position: relative;
+  z-index: 3;
+  pointer-events: none;
 }
 
 .about-me {
@@ -1041,6 +1082,7 @@ a {
   color: rgb(0, 132, 255);
   font-weight: 800;
   transition: all 300ms ease;
+  pointer-events: all;
 }
 
 .about-me__para span:hover {
@@ -1070,6 +1112,9 @@ a {
   text-align: center;
   transition: all 300ms ease;
   opacity: 100%;
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .project__header--dimmmed {
@@ -1159,10 +1204,14 @@ a {
   transition: all 300ms ease;
   background-color: #1c0b33;
   box-shadow: inset 0 0 100px 40px rgba(0, 0, 0, 0.829);
-  animation: topLeftZoomIn 300ms ease forwards;
 
   z-index: 20;
 }
+
+.project__details:nth-child(odd) {
+  animation: topLeftZoomIn 300ms ease forwards;
+}
+
 .project__wrapper {
   position: relative;
   border-radius: 16px;
@@ -1331,6 +1380,7 @@ a {
 .footer__styling {
   background-color: black;
   position: relative;
+  z-index: 3;
   margin-top: 120px;
   visibility: visible;
   opacity: 1;
@@ -1458,7 +1508,6 @@ a {
 
 .contact-modal--open {
   opacity: 0;
-
 }
 
 @keyframes rotate-fade {
@@ -1478,6 +1527,22 @@ a {
   }
   100% {
     opacity: 1;
+  }
+}
+@keyframes topRightZoomIn {
+  0% {
+    top: 0%;
+    right: 0%;
+    scale: 40%;
+    opacity: 0;
+    transform: translate(-60%, -55%);
+  }
+  100% {
+    top: 50%;
+    right: 50%;
+    opacity: 1;
+    scale: 100%;
+    transform: translate(-50%, -50%);
   }
 }
 @keyframes topLeftZoomIn {
@@ -1594,12 +1659,38 @@ a {
   .footer__links {
     font-size: 16px;
   }
+  .tech {
+    padding: 4px;
+  }
   .tech:hover .tech__title {
     transform: translate(-50%, 36px);
   }
 }
 
 @media (max-width: 768px) {
+  #welcome-section {
+    margin: 0;
+  }
+
+  .contact-modal__header {
+    font-size: 24px;
+  }
+
+  .contact-modal__sub-header {
+    font-size: 12px;
+  }
+
+  #contact__form {
+    padding: 48px 0;
+  }
+  .contact-modal__last {
+    padding: 40px 0;
+  }
+
+  .form__submit {
+    font-size: 16px;
+    max-width: 240px;
+  }
   .sidebar {
     position: fixed;
     width: 50%;
@@ -1654,6 +1745,33 @@ a {
 }
 
 @media (max-width: 540px) {
+  .contact-modal__first {
+    padding-bottom: 20px;
+  }
+  .contact-modal__middle {
+    padding: 0 36px;
+  }
+
+  #contact__form {
+    padding: 12px 0;
+    padding-bottom: 40px;
+  }
+  .form__item--label {
+    font-size: 16px;
+  }
+  #contact__form textarea,
+  #contact__form input {
+    font-size: 16px;
+    padding-top: 0;
+  }
+  .contact-modal__exit {
+    top: 28px;
+    right: 32px;
+  }
+  .contact-modal__header {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
   .sidebar {
     width: 60%;
   }
@@ -1715,6 +1833,17 @@ a {
   }
 }
 @media (max-width: 480px) {
+  .contact-modal__exit {
+    font-size: 20px;
+  }
+  .contact-modal__cover {
+    box-shadow: inset 0 0 12px 12px #630738;
+  }
+
+  .contact-modal__first {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
   #welcome-section h1 {
     font-size: 3rem;
     letter-spacing: 0.2rem;
