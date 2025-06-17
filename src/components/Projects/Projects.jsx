@@ -4,8 +4,8 @@ import ProjectDetailsApi from "./ProjectDetailsApi";
 import ProjectDetails from "./ProjectDetails";
 import useScrollToCenter from "../../hooks/useScrollToCenter";
 
-const Projects = ({ pageHidden }) => {
-  const [isProjectOpen, setisProjectOpen] = useState(false);
+const Projects = ({ pageHidden, isProjectOpen, setisProjectOpen }) => {
+ 
   const [currentId, setCurrentId] = useState(null);
   const projectData = ProjectDetailsApi();
   const techHoverRef = useRef();
