@@ -13,37 +13,64 @@ import MailButton from "./components/MailButton";
 const MobileBreak = 768;
 
 function App() {
+  const [isProjectOpen, setisProjectOpen] = useState(false);
   const [isResumeOpen, setIsResumeOpen] = useState(false);
-  const width = useWindowWidth();
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isContactSubmitted, setIsContactSubmitted] = useState(false);
-  const [isProjectOpen, setisProjectOpen] = useState(false);
   const [pageHidden, setPageHidden] = useState(false);
   const [nameInput, setNameInput] = useState("");
-  const doScrollToTop = useScrollToTopAndFinish();
   const [isSidebarOpen, setIsSidebarOpen] = useState(() => {
     const initialWidth =
-      typeof window !== "undefined" ? window.innerWidth : MobileBreak + 1;
+    typeof window !== "undefined" ? window.innerWidth : MobileBreak + 1;
     return initialWidth > MobileBreak;
   });
-
+  const doScrollToTop = useScrollToTopAndFinish();
+  const width = useWindowWidth();
+  
+  const toggleResumeModal = () => {
+    setIsResumeOpen(!isResumeOpen);
+  };
+  
+  const toggleSidebar = () => {
+    if (width <= MobileBreak) {
+      setIsSidebarOpen(!isSidebarOpen);
+    }
+  };
+  
+  const openContactModal = useCallback(async () => {
+    setPageHidden(true);
+    await doScrollToTop();
+    setIsContactOpen(true);
+  }, [doScrollToTop]);
+  
+  const closeContactModal = useCallback(() => {
+    setPageHidden(false);
+    setIsContactOpen(false);
+  }, []);
+  
+  const closeSidebar = () => {
+    if (width <= MobileBreak) {
+      setIsSidebarOpen(false);
+    }
+  };
+  
   const getScrollbarWidth = () => {
     const outer = document.createElement("div");
     outer.style.visibility = "hidden";
     outer.style.overflow = "scroll";
     outer.style.msOverflowStyle = "scrollbar";
     document.body.appendChild(outer);
-
+    
     const inner = document.createElement("div");
     outer.appendChild(inner);
-
+    
     const scrollbarWidth = outer.offsetWidth - inner.offsetWidth;
-
+    
     outer.parentNode.removeChild(outer);
-
+    
     return scrollbarWidth;
   };
-
+  
   useEffect(() => {
     if (isResumeOpen | isContactOpen) {
       document.body.classList.add("lockScroll");
@@ -58,34 +85,6 @@ function App() {
     };
   }, [isResumeOpen, isContactOpen]);
 
-
-
-  const toggleResumeModal = () => {
-    setIsResumeOpen(!isResumeOpen);
-  };
-
-  const toggleSidebar = () => {
-    if (width <= MobileBreak) {
-      setIsSidebarOpen(!isSidebarOpen);
-    }
-  };
-
-  const openContactModal = useCallback(async () => {
-    setPageHidden(true);
-    await doScrollToTop();
-    setIsContactOpen(true);
-  }, [doScrollToTop]);
-
-  const closeContactModal = useCallback(() => {
-    setPageHidden(false);
-    setIsContactOpen(false);
-  }, []);
-
-  const closeSidebar = () => {
-    if (width <= MobileBreak) {
-      setIsSidebarOpen(false);
-    }
-  };
 
   useEffect(() => {
     if (width > MobileBreak) {
@@ -113,12 +112,15 @@ function App() {
           isContactSubmitted={isContactSubmitted}
         />
         <div className="content-wrapper">
-          <MailButton openModals = {isContactOpen | isResumeOpen | isProjectOpen} getScrollbarWidth={getScrollbarWidth} openContactModal={openContactModal} />
+          <MailButton
+            openModals={isContactOpen | isResumeOpen | isProjectOpen}
+            getScrollbarWidth={getScrollbarWidth}
+            openContactModal={openContactModal}
+          />
           {isSidebarOpen && (
             <SideBar
               pageHidden={pageHidden}
               openContactModal={openContactModal}
-              isResumeOpen={isResumeOpen}
               closeSidebar={closeSidebar}
               toggleSidebar={toggleSidebar}
               toggleResumeModal={toggleResumeModal}
@@ -133,7 +135,11 @@ function App() {
               toggleResumeModal={toggleResumeModal}
               isResumeOpen={isResumeOpen}
             />
-            <Projects isProjectOpen={isProjectOpen} setisProjectOpen={setisProjectOpen} pageHidden={pageHidden} />
+            <Projects
+              isProjectOpen={isProjectOpen}
+              setisProjectOpen={setisProjectOpen}
+              pageHidden={pageHidden}
+            />
           </section>
         </div>
         <Footer

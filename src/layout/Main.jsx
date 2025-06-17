@@ -14,27 +14,35 @@ const Main = ({
     <>
       <div className="main__nav">
         <div
-         style={{
+          style={{
             transition: "all 300ms ease",
-            opacity: `${isResumeOpen ? "0" : "1"}`
+            opacity: `${isResumeOpen ? "0" : "1"}`,
           }}
-        className="main__nav--btn" onClick={() => toggleSidebar()}>
+          className="main__nav--btn"
+          onClick={() => toggleSidebar()}
+        >
           <FontAwesomeIcon icon={faBars} />
         </div>
       </div>
       <section className="main">
-        <ResumeModal isResumeOpen={isResumeOpen} toggleResumeModal={toggleResumeModal} />
+        <ResumeModal
+          isResumeOpen={isResumeOpen}
+          toggleResumeModal={toggleResumeModal}
+        />
         <div className="main__container">
           <div
-                  style={{
-            transition: "opacity 300ms ease",
-            opacity: `${isResumeOpen ? "0" : "1"}`
-          }}
-          className="main__row">
-            <TechBox pageHidden={pageHidden}/>
+            style={{
+              transition: "opacity 300ms ease",
+              opacity: `${isResumeOpen ? "0" : "1"}`,
+            }}
+            className="main__row"
+          >
+            <TechBox pageHidden={pageHidden} />
             <section id="about-me">
-                <div className="about-me__container">
-              <div className={`about-me ${pageHidden && "contact-modal--open"}`}>
+              <div className="about-me__container">
+                <div
+                  className={`about-me ${pageHidden && "contact-modal--open"}`}
+                >
                   <h2 className="about-me__header">
                     About <br /> Me:
                   </h2>
@@ -51,10 +59,13 @@ const Main = ({
                     oddly exciting. Anyhow, I do understand that this is a
                     business world, so, when you're ready to know how I can
                     benefit yours, feel free to{" "}
-                   
-                      <span
+                    <span
                       onClick={() => openContactModal()}
-                      className="link__hover-effect">contact me</span>.
+                      className="link__hover-effect"
+                    >
+                      contact me
+                    </span>
+                    .
                   </p>
                 </div>
               </div>

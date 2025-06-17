@@ -12,7 +12,7 @@ const Footer = ({ toggleResumeModal, openContactModal, pageHidden }) => {
   };
   return (
     <section id="footer">
-    <div className={`footer__styling ${pageHidden && "contact-modal--open"}`}>
+      <div className={`footer__styling ${pageHidden && "contact-modal--open"}`}>
         <div onClick={() => toTop()} className="footer__to-top">
           <div className="triangle">^</div>
         </div>
@@ -24,9 +24,13 @@ const Footer = ({ toggleResumeModal, openContactModal, pageHidden }) => {
             <div className="footer__row">
               <div className="footer__links">
                 <a href="#about-me">
-                  <div className="footer__link link__hover-effect ">About Me</div>
+                  <div className="footer__link link__hover-effect ">
+                    About Me
+                  </div>
                 </a>
-                <a target="_blank" href="https://github.com/OG-TenLetters">
+                <a target="_blank"
+                rel="noreferrer"
+                href="https://github.com/OG-TenLetters">
                   <div className="footer__link link__hover-effect ">Github</div>
                 </a>
                 <div onClick={() => toTop()} className="footer__logo clickable">

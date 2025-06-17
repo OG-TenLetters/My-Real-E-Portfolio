@@ -1,33 +1,17 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpRightFromSquare, faMobileScreen, faTimes } from "@fortawesome/free-solid-svg-icons";
-import Aos from "aos";
+import {
+  faArrowUpRightFromSquare,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
 import "aos/dist/aos.css";
-import { useEffect } from "react";
-import { motion } from "framer-motion";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
-const ProjectDetails = ({ projectData, currentId, toggleProject, componentRef,
- }) => {
-  const zoomCenter0 = {
-    hidden: {
-      y: "0",
-      x: "-20rem",
-      opacity: 0,
-    },
-    visible: {
-      y: "50%",
-      x: "50%",
-      opacity: 1,
-      transition: {
-        duration: 0.3,
-      },
-    },
-    exit: {
-      y: "0",
-      x: "-20rem",
-      opacity: 0,
-    },
-  };
+const ProjectDetails = ({
+  projectData,
+  currentId,
+  toggleProject,
+  componentRef,
+}) => {
 
   return (
     <section ref={componentRef} id="project__details">
@@ -47,7 +31,10 @@ const ProjectDetails = ({ projectData, currentId, toggleProject, componentRef,
           >
             <div className="project__link">
               <p className="project__repo--desktop">Github</p>
-              <FontAwesomeIcon className="project__repo--mobile" icon={faGithub} />
+              <FontAwesomeIcon
+                className="project__repo--mobile"
+                icon={faGithub}
+              />
             </div>
           </a>
           <a
@@ -60,7 +47,10 @@ const ProjectDetails = ({ projectData, currentId, toggleProject, componentRef,
                 Live <br />
                 View
               </p>
-              <FontAwesomeIcon className="project__repo--mobile" icon={faArrowUpRightFromSquare} />
+              <FontAwesomeIcon
+                className="project__repo--mobile"
+                icon={faArrowUpRightFromSquare}
+              />
             </div>
           </a>
         </div>

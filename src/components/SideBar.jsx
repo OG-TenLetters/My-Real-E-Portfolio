@@ -8,9 +8,6 @@ import {
 import {
   faBars,
   faEnvelope,
-  faMailForward,
-  faPhone,
-  faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import NavButton from "./NavButton";
 import Linkbubble from "./Linkbubble";
@@ -22,7 +19,6 @@ const SideBar = ({
   closeSidebar,
   openContactModal,
   pageHidden,
-  isResumeOpen,
 }) => {
   const [imgLoaded, setImgLoaded] = useState(false);
   const handleResume = () => {
@@ -35,7 +31,7 @@ const SideBar = ({
   const handleOpenedContact = () => {
     closeSidebar();
     openContactModal();
-  }
+  };
 
   return (
     <div className={`sidebar ${pageHidden && "contact-modal--open"}`}>
@@ -75,6 +71,7 @@ const SideBar = ({
               className="link-color"
               href="https://github.com/OG-TenLetters"
               target="_blank"
+              rel="noreferrer"
             >
               <Linkbubble social={faGithub} />
             </a>
@@ -82,6 +79,7 @@ const SideBar = ({
               className="link-color"
               href="https://www.instagram.com/ten._.letters"
               target="_blank"
+              rel="noreferrer"
             >
               <Linkbubble social={faInstagram} />
             </a>
@@ -89,12 +87,11 @@ const SideBar = ({
               className="link-color"
               href="https://www.linkedin.com/in/jadon-smith-6143b9334/"
               target="_blank"
+              rel="noreferrer"
             >
               <Linkbubble social={faLinkedin} />
             </a>
-            <div 
-            onClick={() => handleOpenedContact()}
-            className="link-color">
+            <div onClick={() => handleOpenedContact()} className="link-color">
               <Linkbubble social={faEnvelope} />
             </div>
           </div>
