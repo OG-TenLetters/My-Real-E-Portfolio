@@ -1,9 +1,8 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Footer from "./components/Footer";
 import SideBar from "./components/SideBar";
 import WelcomeSection from "./components/WelcomeSection";
 import Main from "./layout/Main";
-import BackgroundImg from "./assets/BackgroundExample.png";
 import Projects from "./components/Projects/Projects";
 import useWindowWidth from "./hooks/useWindowWidth";
 import ContactModal from "./components/ContactModal";
@@ -60,7 +59,7 @@ function App() {
       document.body.classList.remove("lockScroll");
       document.body.style.paddingRight = '0px';
     };
-  }, [isResumeOpen | isContactOpen]);
+  }, [isResumeOpen , isContactOpen]);
 
   
   const toggleResumeModal = () => {
@@ -121,13 +120,16 @@ function App() {
             <SideBar
               pageHidden={pageHidden}
               openContactModal={openContactModal}
+              isResumeOpen={isResumeOpen}
               closeSidebar={closeSidebar}
               toggleSidebar={toggleSidebar}
               toggleResumeModal={toggleResumeModal}
             />
           )}
 
-          <section id="main-content">
+          <section
+          
+          id="main-content">
             <Main
               pageHidden={pageHidden}
               openContactModal={openContactModal}

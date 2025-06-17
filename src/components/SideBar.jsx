@@ -22,6 +22,7 @@ const SideBar = ({
   closeSidebar,
   openContactModal,
   pageHidden,
+  isResumeOpen,
 }) => {
   const [imgLoaded, setImgLoaded] = useState(false);
   const handleResume = () => {

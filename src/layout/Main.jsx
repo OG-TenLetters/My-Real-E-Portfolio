@@ -13,14 +13,24 @@ const Main = ({
   return (
     <>
       <div className="main__nav">
-        <div className="main__nav--btn" onClick={() => toggleSidebar()}>
+        <div
+         style={{
+            transition: "all 300ms ease",
+            opacity: `${isResumeOpen ? "0" : "1"}`
+          }}
+        className="main__nav--btn" onClick={() => toggleSidebar()}>
           <FontAwesomeIcon icon={faBars} />
         </div>
       </div>
       <section className="main">
         <ResumeModal isResumeOpen={isResumeOpen} toggleResumeModal={toggleResumeModal} />
         <div className="main__container">
-          <div className={`main__row ${isResumeOpen && "dim"}`}>
+          <div
+                  style={{
+            transition: "opacity 300ms ease",
+            opacity: `${isResumeOpen ? "0" : "1"}`
+          }}
+          className="main__row">
             <TechBox pageHidden={pageHidden}/>
             <section id="about-me">
                 <div className="about-me__container">
