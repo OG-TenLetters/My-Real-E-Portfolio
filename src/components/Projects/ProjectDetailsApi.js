@@ -100,7 +100,7 @@ const ProjectDetailsApi = () => {
           link: "https://github.com/OG-TenLetters/Netflix-Clone",
         },
         {
-          link: "https://netflix-clone-ruddy-eta.vercel.app/",
+          link: "https://media-site-ruddy-eta.vercel.app/",
         },
       ],
       techs: [
