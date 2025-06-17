@@ -9,6 +9,7 @@ import useWindowWidth from "./hooks/useWindowWidth";
 import ContactModal from "./components/ContactModal";
 import TriangleBgAnimation from "./components/TriangleBgAnimation";
 import useScrollToTopAndFinish from "./hooks/useScrollTopTopAndFinish";
+import MailButton from "./components/MailButton";
 
 const MobileBreak = 768;
 
@@ -115,6 +116,7 @@ function App() {
           isContactSubmitted={isContactSubmitted}
         />
         <div className="content-wrapper">
+          <MailButton openContactModal={openContactModal} />
           {isSidebarOpen && (
             <SideBar
               pageHidden={pageHidden}
