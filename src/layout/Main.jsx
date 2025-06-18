@@ -6,6 +6,7 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 const Main = ({
   toggleResumeModal,
   isResumeOpen,
+  isProjectOpen,
   toggleSidebar,
   pageHidden,
   openContactModal,
@@ -16,7 +17,8 @@ const Main = ({
         <div
           style={{
             transition: "all 300ms ease",
-            opacity: `${isResumeOpen ? "0" : "1"}`,
+            opacity: `${isResumeOpen | isProjectOpen ? "0" : "1"}`,
+            pointerEvents: `${isResumeOpen | isProjectOpen ? "none" : "all"}`,
           }}
           className="main__nav--btn"
           onClick={() => toggleSidebar()}

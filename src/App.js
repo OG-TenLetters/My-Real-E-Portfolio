@@ -134,6 +134,7 @@ function App() {
               toggleSidebar={toggleSidebar}
               toggleResumeModal={toggleResumeModal}
               isResumeOpen={isResumeOpen}
+              isProjectOpen={isProjectOpen}
             />
             <Projects
               isProjectOpen={isProjectOpen}
