@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import resumeJpg from "../assets/Jadon Smith - Resume.png";
+import resumeJpg from "../assets/Jadon Smith - Resume.jpg";
 
 import {
   faCaretUp,
@@ -64,8 +64,7 @@ const ResumeModal = ({ isResumeOpen, toggleResumeModal }) => {
                   >
                     <a
                       className="resume__download--option"
-                      href={"/Jadon Smith - Resume.docx"}
-                      download={"Jadon Smith - Resume.docx"}
+                      onClick={() => alert("Docx are terrible for ATS, no thank you.")}
                     >
                       <FontAwesomeIcon icon={faFileWord} />
                       .docx

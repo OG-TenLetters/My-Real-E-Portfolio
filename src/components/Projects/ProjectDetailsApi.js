@@ -220,7 +220,7 @@ const ProjectDetailsApi = () => {
       ],
       techs: [
         {
-          tech: "NextJs",
+          tech: "Next.js",
           bg_color: NextJsColor,
         },
         {
