@@ -12,7 +12,6 @@ import MailButton from "./components/MailButton";
 
 const MobileBreak = 768;
 
-
 function App() {
   const [isProjectOpen, setisProjectOpen] = useState(false);
   const [isResumeOpen, setIsResumeOpen] = useState(false);
@@ -24,53 +23,55 @@ function App() {
   const [shiftMailBtn, setShiftMailBtn] = useState(false);
   const doScrollToTop = useScrollToTopAndFinish();
   const width = useWindowWidth();
-  
+
   const toggleResumeModal = () => {
     setIsResumeOpen(!isResumeOpen);
   };
-  
+
   const toggleSidebar = () => {
     if (width <= MobileBreak) {
       setIsSidebarOpen(!isSidebarOpen);
     }
   };
-  
+
   const openContactModal = useCallback(async () => {
     setPageHidden(true);
     await doScrollToTop();
     setIsContactOpen(true);
   }, [doScrollToTop]);
-  
+
   const closeContactModal = useCallback(() => {
     setPageHidden(false);
     setIsContactOpen(false);
   }, []);
-  
+
   const closeSidebar = () => {
     if (width <= MobileBreak) {
       setIsSidebarOpen(false);
     }
   };
-  
+
   const getScrollbarWidth = () => {
     const outer = document.createElement("div");
     outer.style.visibility = "hidden";
     outer.style.overflow = "scroll";
     outer.style.msOverflowStyle = "scrollbar";
     document.body.appendChild(outer);
-    
+
     const inner = document.createElement("div");
     outer.appendChild(inner);
-    
+
     const scrollbarWidth = outer.offsetWidth - inner.offsetWidth;
-    
+
     outer.parentNode.removeChild(outer);
-    
+
     return scrollbarWidth;
   };
-  
+
+  const mobileSidebar = isSidebarOpen && width < MobileBreak;
+
   useEffect(() => {
-    if (isResumeOpen | isContactOpen) {
+    if (isResumeOpen | isContactOpen | mobileSidebar) {
       document.body.classList.add("lockScroll");
       document.body.style.paddingRight = `${getScrollbarWidth()}px`;
     } else {
@@ -81,8 +82,7 @@ function App() {
       document.body.classList.remove("lockScroll");
       document.body.style.paddingRight = "0px";
     };
-  }, [isResumeOpen, isContactOpen]);
-
+  }, [isResumeOpen, isContactOpen, mobileSidebar]);
 
   useEffect(() => {
     if (width > MobileBreak) {
@@ -92,24 +92,22 @@ function App() {
     }
   }, [width]);
 
-  
- useEffect(() => {
-  const scrollToMain = () => {
-    setTimeout(() => {
-      if (window.pageYOffset <= 100) {
-        window.scrollTo({
-          top: window.innerHeight + 120,
-          behavior: "smooth"
-        });
-      }
-      })
-  };
+  useEffect(() => {
+    const scrollToMain = () => {
+      setTimeout(() => {
+        if (window.pageYOffset <= 100) {
+          window.scrollTo({
+            top: window.innerHeight + 120,
+            behavior: "smooth",
+          });
+        }
+      });
+    };
 
-  const timer = setTimeout(scrollToMain, 4000);
+    const timer = setTimeout(scrollToMain, 4000);
 
-  return () => clearTimeout(timer);
-}, []);
-
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const bottomOfPageEffect = () => {
@@ -118,17 +116,15 @@ function App() {
       const windowHeight = window.innerHeight;
 
       const docHeight = document.documentElement.scrollHeight;
-      
+
       if (scrollTop + windowHeight >= docHeight && width <= MobileBreak) {
-        setShiftMailBtn(true)
+        setShiftMailBtn(true);
       } else {
-        setShiftMailBtn(false)
+        setShiftMailBtn(false);
       }
-    }
-    window.addEventListener('scroll', bottomOfPageEffect)
-
-
-  }, [])
+    };
+    window.addEventListener("scroll", bottomOfPageEffect);
+  }, [width]);
 
   return (
     <div className="App">
@@ -153,19 +149,24 @@ function App() {
             getScrollbarWidth={getScrollbarWidth}
             openContactModal={openContactModal}
             shiftMailBtn={shiftMailBtn}
+            mobileSidebar={mobileSidebar}
           />
 
-            <SideBar
-              pageHidden={pageHidden}
-              openContactModal={openContactModal}
-              closeSidebar={closeSidebar}
-              toggleSidebar={toggleSidebar}
-              isSidebarOpen={isSidebarOpen}
-              toggleResumeModal={toggleResumeModal}
-            />
+          <SideBar
+            pageHidden={pageHidden}
+            openContactModal={openContactModal}
+            closeSidebar={closeSidebar}
+            toggleSidebar={toggleSidebar}
+            isSidebarOpen={isSidebarOpen}
+            toggleResumeModal={toggleResumeModal}
+          />
 
-
-          <section id="main-content">
+          <section
+            style={{
+              pointerEvents: `${mobileSidebar ? "none" : "all"}`,
+            }}
+            id="main-content"
+          >
             <Main
               pageHidden={pageHidden}
               openContactModal={openContactModal}

@@ -5,10 +5,7 @@ import {
   faInstagram,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
-import {
-  faBars,
-  faEnvelope,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBars, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import NavButton from "./NavButton";
 import Linkbubble from "./Linkbubble";
 import { useState } from "react";
@@ -35,8 +32,17 @@ const SideBar = ({
   };
 
   return (
-    <div className={`sidebar ${isSidebarOpen ? "sidebar--open" : "sidebar--closed"} ${pageHidden && "contact-modal--open"}`}>
-      <div onClick={() => toggleSidebar()} className={`sidebar__exit clickable ${isSidebarOpen ? "sidebar--open" : "sidebar--closed"}`}>
+    <div
+      className={`sidebar ${
+        isSidebarOpen ? "sidebar--open" : "sidebar--closed"
+      } ${pageHidden && "contact-modal--open"}`}
+    >
+      <div
+        onClick={() => toggleSidebar()}
+        className={`sidebar__exit clickable ${
+          isSidebarOpen ? "sidebar--open" : "sidebar--closed"
+        }`}
+      >
         <FontAwesomeIcon icon={faBars} />
       </div>
       <div className="profile">

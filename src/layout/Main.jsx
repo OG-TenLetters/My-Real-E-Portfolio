@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ResumeModal from "../components/ResumeModal";
 import TechBox from "../components/TechBox/TechBox";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { scale } from "framer-motion";
 
 const Main = ({
   toggleResumeModal,
@@ -19,9 +18,13 @@ const Main = ({
         <div
           style={{
             transition: "all 300ms ease",
-            opacity: `${isResumeOpen | isProjectOpen | isSidebarOpen ? "0" : "1"}`,
-            pointerEvents: `${isResumeOpen | isProjectOpen | isSidebarOpen ? "none" : "all"}`,
-            transform: `${isSidebarOpen ? "rotate(90deg)" : "rotate(0deg)"}`
+            opacity: `${
+              isResumeOpen | isProjectOpen | isSidebarOpen ? "0" : "1"
+            }`,
+            pointerEvents: `${
+              isResumeOpen | isProjectOpen | isSidebarOpen ? "none" : "all"
+            }`,
+            transform: `${isSidebarOpen ? "rotate(90deg)" : "rotate(0deg)"}`,
           }}
           className="main__nav--btn"
           onClick={() => toggleSidebar()}
@@ -36,7 +39,7 @@ const Main = ({
           isResumeOpen={isResumeOpen}
           toggleResumeModal={toggleResumeModal}
         />
-        <div className="main__container">
+        <div className={`main__container ${isSidebarOpen}`}>
           <div
             style={{
               transition: "opacity 300ms ease",

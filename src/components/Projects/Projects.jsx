@@ -9,7 +9,7 @@ const Projects = ({ pageHidden, isProjectOpen, setisProjectOpen }) => {
   const componentRef = useScrollToCenter(isProjectOpen);
   const techHoverRef = useRef();
   const projectData = ProjectDetailsApi();
-  
+
   const toggleProject = () => {
     setisProjectOpen(!isProjectOpen);
   };

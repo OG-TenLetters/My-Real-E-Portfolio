@@ -404,7 +404,6 @@ a {
   transform: scale(1.2);
 }
 
-
 .mail__btn:hover:focus {
   background-color: green;
 }
@@ -474,7 +473,6 @@ a {
 
 .main__nav--pulse-ring-2 {
   animation: pulseOut 4.2s ease infinite 150ms;
-
 }
 
 #resume__modal {
@@ -502,8 +500,6 @@ a {
 .resume__modal.show {
   opacity: 1;
   transform: translateX(50%) scale(1);
-
-  
 }
 .resume__modal.hidden {
   pointer-events: none;
@@ -686,12 +682,10 @@ a {
 
 .sidebar.sidebar--open {
   transform: translateX(0);
-
 }
 
 .sidebar.sidebar--closed {
   transform: translateX(-100%);
-
 }
 
 .sidebar__exit {
@@ -1289,8 +1283,6 @@ a {
   z-index: 20;
 }
 
-
-
 .project__wrapper {
   position: relative;
   border-radius: 16px;
@@ -1668,7 +1660,6 @@ a {
   }
 }
 
-
 @keyframes pulseOut {
   0% {
     opacity: 0;
@@ -1693,7 +1684,6 @@ a {
   border-color: transparent;
 }
 .sending {
-
   width: 100%;
   font-size: 60px;
   opacity: 0;
@@ -1717,7 +1707,7 @@ a {
     transform: rotate(0deg);
   }
   100% {
-   transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
@@ -1969,8 +1959,7 @@ a {
     font-size: 20px;
   }
 
-  .contact-modal__container.show
-  .contact-modal__cover {
+  .contact-modal__container.show .contact-modal__cover {
     box-shadow: inset 0 0 12px 12px #630738;
   }
 
