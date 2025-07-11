@@ -3,7 +3,12 @@ import Logo from "../assets/Jadon-Logo.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 
-const Footer = ({ toggleResumeModal, openContactModal, pageHidden }) => {
+const Footer = ({
+  toggleResumeModal,
+  openContactModal,
+  pageHidden,
+  mobileSidebar,
+}) => {
   const toTop = () => {
     window.scrollTo({
       top: 0,
@@ -11,7 +16,12 @@ const Footer = ({ toggleResumeModal, openContactModal, pageHidden }) => {
     });
   };
   return (
-    <section id="footer">
+    <section
+      style={{
+        pointerEvents: `${mobileSidebar ? "none" : "all"}`,
+      }}
+      id="footer"
+    >
       <div className={`footer__styling ${pageHidden && "contact-modal--open"}`}>
         <div onClick={() => toTop()} className="footer__to-top">
           <div className="triangle">^</div>
@@ -28,9 +38,11 @@ const Footer = ({ toggleResumeModal, openContactModal, pageHidden }) => {
                     About Me
                   </div>
                 </a>
-                <a target="_blank"
-                rel="noreferrer"
-                href="https://github.com/OG-TenLetters">
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://github.com/OG-TenLetters"
+                >
                   <div className="footer__link link__hover-effect ">Github</div>
                 </a>
                 <div onClick={() => toTop()} className="footer__logo clickable">

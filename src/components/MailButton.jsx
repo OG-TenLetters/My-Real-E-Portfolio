@@ -14,8 +14,8 @@ const MailButton = ({
       style={{
         right: `${openModals ? getScrollbarWidth() : 32}px`,
         transition: "all 300ms ease",
-        opacity: `${openModals | mobileSidebar ? "0" : "1"}`,
-        pointerEvents: `${openModals | mobileSidebar ? "none" : "all"}`,
+        opacity: `${openModals | mobileSidebar | shiftMailBtn ? "0" : "1"}`,
+        pointerEvents: `${openModals | mobileSidebar | shiftMailBtn ? "none" : "all"}`,
         transform: ` ${shiftMailBtn ? "translateY(40px)" : "translateY(0)"}`,
       }}
       className="mail__btn"

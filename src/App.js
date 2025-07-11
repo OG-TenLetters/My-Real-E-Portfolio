@@ -175,6 +175,7 @@ function App() {
               isResumeOpen={isResumeOpen}
               isSidebarOpen={isSidebarOpen}
               isProjectOpen={isProjectOpen}
+              mobileSidebar={mobileSidebar}
             />
             <Projects
               isProjectOpen={isProjectOpen}
@@ -184,6 +185,7 @@ function App() {
           </section>
         </div>
         <Footer
+        mobileSidebar={mobileSidebar}
           pageHidden={pageHidden}
           openContactModal={openContactModal}
           toggleResumeModal={toggleResumeModal}

@@ -11,6 +11,7 @@ const Main = ({
   toggleSidebar,
   pageHidden,
   openContactModal,
+  mobileSidebar,
 }) => {
   return (
     <>
@@ -72,6 +73,7 @@ const Main = ({
                     <span
                       onClick={() => openContactModal()}
                       className="link__hover-effect"
+                      style={{pointerEvents: `${mobileSidebar ? "none" : "all"}`}}
                     >
                       contact me
                     </span>

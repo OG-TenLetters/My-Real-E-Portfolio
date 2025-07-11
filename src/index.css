@@ -1816,6 +1816,7 @@ a {
   .sidebar {
     position: fixed;
     width: 50%;
+    height: 100vh;
     background-color: #08130fef;
     box-shadow: inset 0 0 24px 8px #30cc3d33;
   }
@@ -1896,6 +1897,7 @@ a {
   }
   .sidebar {
     width: 60%;
+    height: 99vh;
   }
   .profile {
     width: 90%;
