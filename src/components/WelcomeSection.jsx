@@ -45,6 +45,7 @@ const WelcomeSection = ({
   //   initialFontSize - fontSizeDifference * scrollProgress
   // }em`;
 
+
   return (
     <div
       id="welcome-section"

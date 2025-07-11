@@ -458,6 +458,25 @@ a {
   cursor: pointer;
 }
 
+.main__nav--pulse-ring,
+.main__nav--pulse-ring-2 {
+  border: 2px solid rgb(170, 170, 170);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: absolute;
+  z-index: -1;
+}
+
+.main__nav--pulse-ring {
+  animation: pulseOut 4.2s ease infinite;
+}
+
+.main__nav--pulse-ring-2 {
+  animation: pulseOut 4.2s ease infinite 150ms;
+
+}
+
 #resume__modal {
   position: relative;
 }
@@ -660,8 +679,19 @@ a {
   z-index: 50;
   opacity: 1;
   visibility: visible;
-  transition: opacity 600ms ease;
+  transition: all 300ms ease;
   pointer-events: none;
+  transform: translateX(0);
+}
+
+.sidebar.sidebar--open {
+  transform: translateX(0);
+
+}
+
+.sidebar.sidebar--closed {
+  transform: translateX(-100%);
+
 }
 
 .sidebar__exit {
@@ -671,8 +701,22 @@ a {
   color: white;
   font-size: 28px;
   display: none;
-  transform: rotate(90deg);
+  transform: rotate(0deg);
   pointer-events: all;
+  opacity: 0;
+  transition: transform 300ms ease;
+}
+
+.sidebar__exit.sidebar--open {
+  transition: opacity 120ms ease, transform 240ms ease 120ms;
+  transform: rotate(90deg);
+  opacity: 1;
+}
+
+.sidebar__exit.sidebar--closed {
+  transition: opacity 50ms ease, transform 50ms ease;
+  transform: rotate(0deg);
+  opacity: 0;
 }
 
 .profile {
@@ -965,6 +1009,8 @@ a {
 .techs {
   position: relative;
   margin-top: 32px;
+  padding-left: 2px;
+  padding-right: 2px;
   z-index: 15;
 }
 
@@ -1619,6 +1665,26 @@ a {
   100% {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+
+@keyframes pulseOut {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  10% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
   }
 }
 

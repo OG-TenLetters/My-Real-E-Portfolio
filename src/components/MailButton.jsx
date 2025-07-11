@@ -1,7 +1,7 @@
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const MailButton = ({ openContactModal, openModals, getScrollbarWidth }) => {
+const MailButton = ({ openContactModal, openModals, getScrollbarWidth, shiftMailBtn }) => {
   return (
     <button
       onClick={() => openContactModal()}
@@ -10,6 +10,7 @@ const MailButton = ({ openContactModal, openModals, getScrollbarWidth }) => {
         transition: "all 300ms ease",
         opacity: `${openModals ? "0" : "1"}`,
         pointerEvents: `${openModals ? "none" : "all"}`,
+        transform: ` ${shiftMailBtn ? "translateY(40px)" : "translateY(0)"}`
       }}
       className="mail__btn"
     >

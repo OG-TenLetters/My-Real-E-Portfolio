@@ -2,11 +2,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ResumeModal from "../components/ResumeModal";
 import TechBox from "../components/TechBox/TechBox";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { scale } from "framer-motion";
 
 const Main = ({
   toggleResumeModal,
   isResumeOpen,
   isProjectOpen,
+  isSidebarOpen,
   toggleSidebar,
   pageHidden,
   openContactModal,
@@ -17,13 +19,16 @@ const Main = ({
         <div
           style={{
             transition: "all 300ms ease",
-            opacity: `${isResumeOpen | isProjectOpen ? "0" : "1"}`,
-            pointerEvents: `${isResumeOpen | isProjectOpen ? "none" : "all"}`,
+            opacity: `${isResumeOpen | isProjectOpen | isSidebarOpen ? "0" : "1"}`,
+            pointerEvents: `${isResumeOpen | isProjectOpen | isSidebarOpen ? "none" : "all"}`,
+            transform: `${isSidebarOpen ? "rotate(90deg)" : "rotate(0deg)"}`
           }}
           className="main__nav--btn"
           onClick={() => toggleSidebar()}
         >
           <FontAwesomeIcon icon={faBars} />
+          <div className="main__nav--pulse-ring"></div>
+          <div className="main__nav--pulse-ring-2"></div>
         </div>
       </div>
       <section className="main">

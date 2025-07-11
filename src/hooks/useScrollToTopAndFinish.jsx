@@ -44,7 +44,6 @@ const useScrollToTopAndFinish = () => {
       });
 
      
-      let lastDetectedScrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
       const currentHandleScroll = () => {
         const newScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
@@ -62,31 +61,13 @@ const useScrollToTopAndFinish = () => {
                     }
                 }
             }, 50); 
-        } else {
-            clearTimeout(scrollTimeoutRef.current);
-            lastDetectedScrollTop = newScrollPosition; 
-        }
+        } 
       };
 
       handleScrollRef.current = currentHandleScroll;
       window.addEventListener("scroll", handleScrollRef.current);
 
-      const fallbackTimeoutId = setTimeout(() => {
-        if (window.pageYOffset === 0) {
-          if (resolvePromiseRef.current) {
-            if (handleScrollRef.current) {
-              window.removeEventListener("scroll", handleScrollRef.current);
-              handleScrollRef.current = null;
-            }
-            resolvePromiseRef.current();
-            resolvePromiseRef.current = null;
-          }
-        } 
-        if (scrollTimeoutRef.current) { 
-            clearTimeout(scrollTimeoutRef.current);
-            scrollTimeoutRef.current = null;
-        }
-      }, 300);
+
     });
   }, []);
 

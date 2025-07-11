@@ -7,10 +7,11 @@ import Projects from "./components/Projects/Projects";
 import useWindowWidth from "./hooks/useWindowWidth";
 import ContactModal from "./components/ContactModal";
 import TriangleBgAnimation from "./components/TriangleBgAnimation";
-import useScrollToTopAndFinish from "./hooks/useScrollTopTopAndFinish";
+import useScrollToTopAndFinish from "./hooks/useScrollToTopAndFinish";
 import MailButton from "./components/MailButton";
 
 const MobileBreak = 768;
+
 
 function App() {
   const [isProjectOpen, setisProjectOpen] = useState(false);
@@ -19,11 +20,8 @@ function App() {
   const [isContactSubmitted, setIsContactSubmitted] = useState(false);
   const [pageHidden, setPageHidden] = useState(false);
   const [nameInput, setNameInput] = useState("");
-  const [isSidebarOpen, setIsSidebarOpen] = useState(() => {
-    const initialWidth =
-    typeof window !== "undefined" ? window.innerWidth : MobileBreak + 1;
-    return initialWidth > MobileBreak;
-  });
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [shiftMailBtn, setShiftMailBtn] = useState(false);
   const doScrollToTop = useScrollToTopAndFinish();
   const width = useWindowWidth();
   
@@ -94,6 +92,44 @@ function App() {
     }
   }, [width]);
 
+  
+ useEffect(() => {
+  const scrollToMain = () => {
+    setTimeout(() => {
+      if (window.pageYOffset <= 100) {
+        window.scrollTo({
+          top: window.innerHeight + 120,
+          behavior: "smooth"
+        });
+      }
+      })
+  };
+
+  const timer = setTimeout(scrollToMain, 4000);
+
+  return () => clearTimeout(timer);
+}, []);
+
+
+  useEffect(() => {
+    const bottomOfPageEffect = () => {
+      const scrollTop = window.scrollY;
+
+      const windowHeight = window.innerHeight;
+
+      const docHeight = document.documentElement.scrollHeight;
+      
+      if (scrollTop + windowHeight >= docHeight && width <= MobileBreak) {
+        setShiftMailBtn(true)
+      } else {
+        setShiftMailBtn(false)
+      }
+    }
+    window.addEventListener('scroll', bottomOfPageEffect)
+
+
+  }, [])
+
   return (
     <div className="App">
       <div className="App-bg">
@@ -116,16 +152,18 @@ function App() {
             openModals={isContactOpen | isResumeOpen | isProjectOpen}
             getScrollbarWidth={getScrollbarWidth}
             openContactModal={openContactModal}
+            shiftMailBtn={shiftMailBtn}
           />
-          {isSidebarOpen && (
+
             <SideBar
               pageHidden={pageHidden}
               openContactModal={openContactModal}
               closeSidebar={closeSidebar}
               toggleSidebar={toggleSidebar}
+              isSidebarOpen={isSidebarOpen}
               toggleResumeModal={toggleResumeModal}
             />
-          )}
+
 
           <section id="main-content">
             <Main
@@ -134,6 +172,7 @@ function App() {
               toggleSidebar={toggleSidebar}
               toggleResumeModal={toggleResumeModal}
               isResumeOpen={isResumeOpen}
+              isSidebarOpen={isSidebarOpen}
               isProjectOpen={isProjectOpen}
             />
             <Projects

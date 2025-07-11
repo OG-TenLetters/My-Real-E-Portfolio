@@ -19,6 +19,7 @@ const SideBar = ({
   closeSidebar,
   openContactModal,
   pageHidden,
+  isSidebarOpen,
 }) => {
   const [imgLoaded, setImgLoaded] = useState(false);
   const handleResume = () => {
@@ -34,8 +35,8 @@ const SideBar = ({
   };
 
   return (
-    <div className={`sidebar ${pageHidden && "contact-modal--open"}`}>
-      <div onClick={() => toggleSidebar()} className="sidebar__exit clickable">
+    <div className={`sidebar ${isSidebarOpen ? "sidebar--open" : "sidebar--closed"} ${pageHidden && "contact-modal--open"}`}>
+      <div onClick={() => toggleSidebar()} className={`sidebar__exit clickable ${isSidebarOpen ? "sidebar--open" : "sidebar--closed"}`}>
         <FontAwesomeIcon icon={faBars} />
       </div>
       <div className="profile">
@@ -108,10 +109,14 @@ const SideBar = ({
 
       <div className="nav__btns">
         <a href="#about-me">
-          <NavButton title={"About Me"} />
+          <div onClick={() => closeSidebar()}>
+            <NavButton title={"About Me"} />
+          </div>
         </a>
         <a href="#my-projects">
-          <NavButton title={"My Projects"} />
+          <div onClick={() => closeSidebar()}>
+            <NavButton title={"My Projects"} />
+          </div>
         </a>
         <div onClick={() => handleOpenedContact()}>
           <NavButton title={"Contact"} />
